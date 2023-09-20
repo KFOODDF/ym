@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 定义命名空间，用于指定对应的 Mapper 接口 -->
+<mapper namespace="com.kaka.mapper.UserMapper">
+
+    <!-- 查询操作：检查用户名是否存在 -->
+    <!-- id：唯一标识，用于在 Mapper 接口中引用此查询 -->
+    <!-- resultType：指定查询结果的类型，结果会映射为 User 对象 -->
+    <select id="userNameIsExist" resultType="com.kaka.model.User">
+        SELECT * FROM USER WHERE username = #{username}
+    </select>
+
+    <!-- 查询操作：检查手机号是否存在 -->
+    <!-- id：唯一标识，用于在 Mapper 接口中引用此查询 -->
+    <!-- resultType：指定查询结果的类型，结果会映射为 User 对象 -->
+    <select id="phoneIsExist" resultType="com.kaka.model.User">
+        SELECT * FROM USER WHERE phone = #{phone}
+    </select>
+
+    <!-- 插入操作：将用户数据插入数据库 -->
+    <!-- id：唯一标识，用于在 Mapper 接口中引用此插入操作 -->
+    <!-- parameterType：指定传入参数的类型，插入操作需要一个 User 对象作为参数 -->
+    <insert id="insertUser" parameterType="com.kaka.model.User">
+        insert into user(phone, username, password, gender, avatarImgUrl)
+        values (#{phone}, #{username}, #{password}, #{gender}, #{avatarImgUrl})
+    </insert>
+
+    <!-- 更新操作：更新用户最近的登录时间 -->
+    <!-- id：唯一标识，用于在 Mapper 接口中引用此更新操作 -->
+    <update id="updatRecentlyLanded">
+        update user set recentlyLanded = #{recentlyLanded} where  phone =#{phone}
+    </update>
+
+    <!-- 查询操作：根据手机号查询用户的角色列表 -->
+    <!-- id：唯一标识，用于在 Mapper 接口中引用此查询 -->
+    <!-- resultType：指定查询结果的类型，结果会映射为 Role 对象列表 -->
+    <select id="queryRolesByPhone" resultType="com.kaka.model.Role">
+        SELECT
+        *
+        FROM
+        ROLE
+        WHERE
+        ID IN(
+        SELECT
+        UR.Role_id
+        FROM
+        USER U
+        JOIN user_role UR ON U.ID = UR.User_id
+        WHERE
+        U.phone = #{phone}
+        )
+    </select>
+
+    <!-- 查询操作：根据手机号查找用户 -->
+    <!-- id：唯一标识，用于在 Mapper 接口中引用此查询 -->
+    <!-- resultType：指定查询结果的类型，结果会映射为 User 对象 -->
+    <select id="findUserByPhone" resultType="com.kaka.model.User">
+        SELECT * FROM USER WHERE phone = #{phone}
+    </select>
+
+    <!-- 插入操作：插入新的用户-角色关联 -->
+    <!-- id：唯一标识，用于在 Mapper 接口中引用此插入操作 -->
+    <!-- 注意：这里的id和之前的更新操作id重复了，需要更改为一个独特的id -->
+    <insert id="updateRoleByUserId">
+        insert  into user_role(User_id,Role_id)values (#{userId},#{roleId})
+    </insert>
+
+</mapper>

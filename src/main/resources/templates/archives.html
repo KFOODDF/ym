@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:http="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>面试辅导 |IT枫斗者</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <meta name="keywords" content="Java,面试辅导,跳槽,面试官,面试题,涨薪,博客,学习,IT,个人,IT枫斗者,程序猿,找工作,学编程，归档">
+    <meta name="description" content="关注求职、跳槽领域，专注java技术分享，java面试经验、java面试总结及面试资料，零基础培训，一对一培训。">
+
+    <link rel="icon" type="image/x-icon" >
+    <link href="https://lib.baomitu.com/amazeui/2.7.2/css/amazeui.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/all.css">
+    <link rel="stylesheet" href="css/tags.css">
+    <link rel="stylesheet" href="css/comment.css">
+    <link rel="stylesheet" href="css/categories.css">
+    <link rel="stylesheet" href="css/archives.css">
+    <link rel="stylesheet" href="css/plugs_paging.css">
+    <link href="https://lib.baomitu.com/font-awesome/5.8.0/css/fontawesome.min.css" rel="stylesheet">
+
+    <script src="https://lib.baomitu.com/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://lib.baomitu.com/underscore.js/1.9.1/underscore-min.js"></script>
+    <script src="https://lib.baomitu.com/amazeui/2.7.2/js/amazeui.min.js"></script>
+</head>
+<body>
+<div id="app">
+    <!--引入共有头部-->
+    <div th:replace="header :: header"></div>
+    <!--页面主体-->
+    <div id="main">
+        <div class="am-container">
+            <div class="am-g">
+                <div class="am-u-sm-12 am-u-lg-12">
+                    <div id="wordsView">
+                        <div class="title">
+                            <div class="title-words">
+                                <h1 class="title-words-h1">全套面试辅导</h1>
+                            </div>
+                        </div>
+                        <div class="zhy-my-words"  data-am-scrollspy="{animation: 'scale-down'}">
+                            <p><i class="am-icon-quote-left " style="float: left"></i></p><br>
+                            <div class="zhy-info">
+                                <p class="zhy-info-words">
+                                    Java跳蚤网是由枫哥和罗老师以及一群志同道合的开发朋友创立的，致力于解决广大编程爱好者入门难、求学难以及面试和跳槽等问题。由于学习编程的过程较为困难，学习者没有具体的学习方向，将要达到的就业水平不明，总会因为一些小问题困扰几个小时，这样会严重的影响整体的学习效率以及学习的信心。而Java跳蚤网要为学习者解决这些问题，我们会提供具有多年开发经验的指导老师，全程二对一给予学生针对性指导，通过文字、语音、远程的方式指导学生进行学习。以及最全面的系统学习教程、作业、项目、简历指导、模拟面试，指导服务一直持续到就业为止。
+                                </p>
+                            </div>
+                            <p><i class="am-icon-quote-right " style="float: right"></i></p><br><hr>
+                        </div>
+                        <div>
+                            <img src="/blogImag/mianshiliuc.jpg" width="100%" height="100%">
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--引入共有底部-->
+    <div th:replace="footer :: footer"></div>
+
+    <!--消息盒子+反馈-->
+    <div th:replace="other :: other"></div>
+</div>
+
+<script src="js/all.js"></script>
+<script src="js/leaveMessage.js"></script>
+</body>
+</html>
