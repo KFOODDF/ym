@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kaka.mapper.TagMapper">
+    <insert id="saveTags">
+        insert  into  tags(tagName,tagSize) values (#{tagname}),#{tagsize}
+    </insert>
+    <select id="findIsExistByTagName" resultType="java.lang.Boolean">
+        select  IFNULL(id,0) from tags where tagName  =  #{tagName}
+    </select>
+</mapper>
+
+
+
