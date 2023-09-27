@@ -5,10 +5,11 @@ spring:
     url: jdbc:mysql://127.0.0.1:3306/myblog?useSSL=true&useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai&useServerPrepStmts=true&cachePrepStmts=true
     username: root
     password: 353146325
+  main:
+    allow-circular-references: true
 
 server:
   port: 80
-  
 
 
 

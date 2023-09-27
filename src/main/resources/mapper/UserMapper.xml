@@ -66,5 +66,8 @@
     <insert id="updateRoleByUserId">
         insert  into user_role(User_id,Role_id)values (#{userId},#{roleId})
     </insert>
+    <select id="getArticleCategories" resultType="com.kaka.model.Categories">
+        SELECT * FROM categoryName WHERE id = #{id}
+    </select>
 
 </mapper>

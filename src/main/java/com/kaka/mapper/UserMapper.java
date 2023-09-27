@@ -48,7 +48,8 @@ public interface UserMapper {
      * @param phone 用户手机号码
      * @return 包含用户角色信息的 Role 对象列表
      */
-    List<Role> queryRolesByPhone(String phone);
+    List<Role> queryRolesByPhone(@Param("phone") String phone);
+
 
     /**
      * 根据手机号码找到对应的用户
@@ -68,4 +69,5 @@ public interface UserMapper {
                                    @Param(value = "roleId") int roleId) {
         // 这个方法是静态的，并且是空的。你可能需要实现它的逻辑或者移除它。
     }
+
 }

@@ -47,7 +47,7 @@ public class RegisterController {
 
         } catch (Exception e){
             // 如果捕获到异常，则记录异常（当前是注释掉的）
-            // log.error("RegisterController register Exception", user, e);
+             log.error("RegisterController register Exception", user, e);
         }
         // 如果出现任何错误，返回服务器异常响应
         return JsonResult.fail(CodeType.SERVER_EXCEPTION).toJSON();

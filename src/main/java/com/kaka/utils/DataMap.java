@@ -5,6 +5,9 @@ import java.util.LinkedHashMap;
 
 /**
  * 业务层数据封装工具类
+ * DataMap 是一个工具类，继承自 LinkedHashMap，用于业务层数据的封装。
+ * 它提供了一种统一的方式来封装返回给前端或其他调用者的数据，
+ * 包括响应的状态码、消息、成功或失败的状态以及实际的数据内容。
  */
 public class DataMap<T> extends LinkedHashMap {
 
@@ -27,6 +30,7 @@ public class DataMap<T> extends LinkedHashMap {
         dataMap.code = CodeType.SUCCESS_STATUS.getCode(); // 默认成功状态码
         return dataMap;
     }
+
 
     // 创建表示成功的DataMap对象的静态方法，可指定状态码
     public static <T> DataMap<T> success(Object code) {

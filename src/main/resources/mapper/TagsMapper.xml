@@ -1,7 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- MyBatis映射文件，用于定义SQL语句与Java方法之间的映射 -->
+
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- DOCTYPE声明，指向MyBatis 3的DTD，用于验证映射文件的结构 -->
 
+<mapper namespace="com.kaka.mapper.TagMapper">
+    <!-- 定义与Java接口com.kaka.mapper.TagMapper相关联的映射 -->
 
+    <insert id="saveTags">
+        <!-- 插入操作，对应TagMapper接口中的saveTags方法 -->
+        <!-- SQL语句用于将新标签插入到tags表中 -->
+        insert into tags(tagName, tagSize) values (#{tagName}, #{tagSize})
+    </insert>
+
+    <select id="findIsExistByTagName" resultType="java.lang.Boolean">
+        <!-- 查询操作，对应TagMapper接口中的findIsExistByTagName方法 -->
+        <!-- SQL语句用于查找给定tagName的标签的最大ID，如果没有找到则返回0 -->
+        select  IFNULL(max(id),0) from tags where tagName  =  #{tagName}
+    </select>
 
 </mapper>

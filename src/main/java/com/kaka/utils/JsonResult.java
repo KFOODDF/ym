@@ -6,6 +6,9 @@ import com.alibaba.fastjson.JSON;
 
 /**
  * 控制层Json数据处理工具类
+ *
+ * @author mac
+ * @date 2023/09/26
  */
 public class JsonResult {
 

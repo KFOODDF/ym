@@ -9,65 +9,74 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-@Service
+
+
+
+@Service  // 标记这是一个Spring服务类
 public class UserServiceImpl implements UserService {
-    @Autowired
+
+    @Autowired  // 自动注入UserMapper对象
     private UserMapper userMapper;
 
-    // 实现 UserService 接口中的方法，检查用户名是否存在
+    // 重写UserService接口中的方法，用于检查用户名是否已存在
     @Override
     public boolean userNameIsExist(String username) {
-        // 通过 UserMapper 调用数据库查询方法，根据用户名查询用户信息
+        // 调用userMapper中的方法，根据用户名查询用户信息
         User user = userMapper.userNameIsExist(username);
-        // 如果查询结果不为 null，表示用户名已存在，返回 true；否则返回 false。
+        // 如果查询到的用户不为null，说明用户名已存在，返回true，否则返回false
         return user != null;
     }
 
-    // 实现 UserService 接口中的方法，插入用户数据到数据库
+    // 重写UserService接口中的方法，用于插入新的用户数据到数据库
     @Override
-    @Transactional
+    @Transactional  // 标记这个方法是一个事务方法
     public DataMap insertUser(User user) {
-        // 判断用户名是否异常：1. 用户名长度是否超过35个字符，2. 是否包含特殊字符
+        // 检查用户名的长度是否超过35个字符，如果是，则返回一个错误的DataMap对象
         if (user.getUsername().length() > 35) {
             return DataMap.fail(CodeType.USERNAME_FORMAT_ERROR);
         }
 
-        // 判断手机号码是否已存在
+        // 调用userMapper中的方法，根据手机号查询用户信息
         User userIsExist = userMapper.phoneIsExist(user.getPhone());
 
+        // 如果查询到的用户不为null，说明手机号已被注册，返回一个错误的DataMap对象
         if (userIsExist != null) {
             return DataMap.fail(CodeType.PHONE_EXIST);
         }
 
-        // 设置默认头像，根据性别不同设置不同的头像
+        // 根据用户的性别设置默认的头像URL
         if ("male".equals(user.getGender())) {
             user.setAvatarImgUrl("www.javatiaocao.com");
         } else {
             user.setAvatarImgUrl("www.javatiaocao.com");
         }
 
-        // 设置truename（此处设置为固定值）
+        // 设置用户的真实姓名（此处设置为一个固定值）
         user.setTrueName("www.javatiaocao.com");
 
-
-        // 调用 UserMapper 插入用户信息到数据库
+        // 调用userMapper中的方法，将用户信息插入到数据库
         userMapper.insertUser(user);
-        //当注册成功的时候，配置权限角色,默认是普通用户
+
+        // 注册成功后，根据用户的手机号查询用户信息
         User userByPhone = userMapper.findUserByPhone(user.getPhone());
+
+        // 更新用户的角色信息，设置为普通用户（角色ID为1）
         updateRoleByUserId(userByPhone.getId(),1);
 
-        // 返回成功的 DataMap 对象
+        // 返回一个表示成功的DataMap对象
         return DataMap.success();
     }
 
+    // 私有方法，用于更新用户的角色信息
     private void updateRoleByUserId(int userId,int roleId) {
-            UserMapper.updateRoleByUserId(userId,roleId);
-
+        // 调用userMapper中的方法，更新用户的角色信息
+        UserMapper.updateRoleByUserId(userId,roleId);
     }
 
+    // 重写UserService接口中的方法，根据手机号查询用户信息
     @Override
     public User findUserPhone(String Phone) {
-
-     return userMapper.findUserByPhone(Phone);
+        // 调用userMapper中的方法，根据手机号查询用户信息
+        return userMapper.findUserByPhone(Phone);
     }
 }

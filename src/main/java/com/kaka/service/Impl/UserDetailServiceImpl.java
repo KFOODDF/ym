@@ -36,6 +36,7 @@ public class UserDetailServiceImpl implements UserDetailsService {
         List<Role> roles = userMapper.queryRolesByPhone(phone);
         user.setRoles(roles); // 设置用户的角色列表
 
+
         // 记录用户登录的系统时间
         TimeUtil timeUtil = new TimeUtil();
         String formatDateForSix = timeUtil.getFormatDateForSix();
