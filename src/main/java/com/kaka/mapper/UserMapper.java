@@ -70,4 +70,6 @@ public interface UserMapper {
         // 这个方法是静态的，并且是空的。你可能需要实现它的逻辑或者移除它。
     }
 
+    User getUserPersonalInfo(String username);
+
 }

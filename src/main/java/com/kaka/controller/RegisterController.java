@@ -8,11 +8,15 @@ import com.kaka.utils.JsonResult;
 import com.kaka.utils.MD5Util;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
+import java.security.Principal;
+import java.util.Objects;
 
 @Slf4j // 使用Lombok库的@Slf4j注解为类提供一个日志对象
 @RestController // 声明这是一个Spring REST控制器
@@ -52,4 +56,36 @@ public class RegisterController {
         // 如果出现任何错误，返回服务器异常响应
         return JsonResult.fail(CodeType.SERVER_EXCEPTION).toJSON();
     }
+
+
+
+
+
+
+    @PostMapping(value = "/getUserPersonalInfo")
+    public String getUserPersonalInfo(@AuthenticationPrincipal Principal principal, HttpServletRequest request) {
+        try {
+           // String username = principal.getName();//当前遇到的问题，principal为null
+            Principal userPrincipal = request.getUserPrincipal();
+            if (!Objects.isNull(userPrincipal)){
+                String username = userPrincipal.getName();
+              DataMap dataMap =  userService.getUserPersonalInfo(username);
+                return JsonResult.build(dataMap).toJSON();
+
+            }
+
+
+
+
+        } catch (Exception e){
+            // 如果捕获到异常，则记录异常（当前是注释掉的）
+            log.error("RegisterController getUserPersonalInfo Exception",  e);
+        }
+        // 如果出现任何错误，返回服务器异常响应
+        return JsonResult.fail(CodeType.SERVER_EXCEPTION).toJSON();
+    }
+
+
+
+
 }

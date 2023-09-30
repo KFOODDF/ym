@@ -1,5 +1,6 @@
 package com.kaka.service;
 
+import com.kaka.model.Tags;
 import org.springframework.stereotype.Service;
 
 /**
@@ -15,5 +16,7 @@ public interface TagService {
      * @param parseInt       文章的等级或分类，用整数表示。
      */
     void insertTags(String[] newarticleTags, int parseInt);
+
+   Integer getTagsSizeByName(String s);
 
 }

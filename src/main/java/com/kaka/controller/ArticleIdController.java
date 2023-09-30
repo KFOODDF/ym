@@ -4,6 +4,7 @@ import com.kaka.constant.CodeType;
 import com.kaka.model.Article;
 import com.kaka.service.ArticleService;
 import com.kaka.service.TagService;
+import com.kaka.service.UserService;
 import com.kaka.utils.*;
 
 import lombok.extern.slf4j.Slf4j;
@@ -16,6 +17,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
 import java.security.Principal;
+import java.time.LocalDate;
+import java.util.Objects;
 
 /**
  * 控制器类，处理与文章ID相关的请求。
@@ -27,6 +30,8 @@ public class ArticleIdController {
     // 自动注入标签服务
     @Autowired
     private TagService tagService;
+    @Autowired
+    private UserService userService;
 
     // 自动注入文章服务
     @Autowired
@@ -49,6 +54,57 @@ public class ArticleIdController {
         } catch (Exception e) {
             // 记录异常信息
             log.error("ArticleIdController getArticleManagement Exception", e);
+        }
+        // 如果发生错误，返回服务器异常的JSON响应
+        return JsonResult.fail(CodeType.SERVER_EXCEPTION).toJSON();
+    }
+
+
+//获取草稿文章！！或者修改文章的内容！！
+    @GetMapping(value = "/getDraftArticle")
+    public String getDraftArticle(HttpServletRequest request) {
+        try {
+            String id =(String) request.getSession().getAttribute("id");
+            //判断文章是否是修改
+            if (id != null) {
+                Article article = articleService.getArticleByid(id);
+                String tags = article.getArticleTags();
+                int lastIndexOf = tags.lastIndexOf(",");
+                String[] tagStr;
+
+                // Check if comma exists in the tags string
+                if (lastIndexOf != -1) {
+                    tagStr = StringAndArray.stringToArray(tags.substring(0, lastIndexOf));
+                } else {
+                    // If no comma, use the entire tags string as an array
+                    tagStr = new String[]{tags};
+                }
+
+                DataMap dataMap = articleService.getDraftArticle(article, tagStr, tagService.getTagsSizeByName(tagStr[0]));
+                return JsonResult.build(dataMap).toJSON();
+            }
+
+
+            //判断是否写文章登录超时
+            if (request.getSession().getAttribute("article")!=null){
+                Article article =(Article) request.getSession().getAttribute("article");
+                String[] tagStr = (String[]) request.getSession().getAttribute("articleTags");
+             String articleGrade =  (String) request.getSession().getAttribute("articleGrade");
+                if (!StringUtil.BLANK.equals(articleGrade) && articleGrade !=null) {
+                    DataMap dataMap = articleService.getDraftArticle(article, tagStr, Integer.parseInt(articleGrade));
+                    request.getSession().removeAttribute("article");
+                    request.getSession().removeAttribute("articleTags");
+                    request.getSession().removeAttribute("articleGrade");
+                    return JsonResult.build(dataMap).toJSON();
+                }
+
+            }
+
+            // 构建并返回成功的JSON响应
+           return  JsonResult.fail().toJSON();
+        } catch (Exception e) {
+            // 记录异常信息
+            log.error("ArticleIdController getDraftArticle Exception", e);
         }
         // 如果发生错误，返回服务器异常的JSON响应
         return JsonResult.fail(CodeType.SERVER_EXCEPTION).toJSON();
@@ -93,7 +149,9 @@ public class ArticleIdController {
                                  @AuthenticationPrincipal Principal principal, HttpServletRequest request) {
         try {
             // 获取文章作者的名称
-            String name = "卡卡罗特";
+            //String name = "卡卡罗特";
+            Principal userPrincipal = request.getUserPrincipal();
+            String name = userPrincipal.getName();
             // 从请求中获取文章的HTML内容，并生成文章摘要
             BuildArticleTabloidUtil buildArticleTabloidUtil = new BuildArticleTabloidUtil();
             String articleHtmlContent = buildArticleTabloidUtil.buildArticleTabloid(request.getParameter("articleHtmlContent"));
@@ -117,9 +175,19 @@ public class ArticleIdController {
             // 检查是否提供了文章ID，以确定是发布新文章还是修改现有文章
             String id = request.getParameter("id");
             if (!StringUtil.BLANK.equals(id) && id != null) {
-
                 // 修改文章逻辑
-                // TODO
+                TimeUtil timeUtil = new TimeUtil();
+                String updateDate = timeUtil.getFormatDateForThree();
+                article.setArticleTags(StringAndArray.arrayToString( newarticleTags));//将数组专程string
+                article.setUpdateDate(updateDate);
+                article.setId(Integer.parseInt(id) );
+                article.setAuthor(name);
+               DataMap data= articleService.updateAricleById(article);
+               return  JsonResult.build(data).toJSON();
+
+
+
+
             }
 
             // 设置文章的发布和更新日期
@@ -146,4 +214,43 @@ public class ArticleIdController {
         // 如果发生错误，返回服务器异常的JSON响应
         return JsonResult.fail(CodeType.SERVER_EXCEPTION).toJSON();
     }
+
+
+    //验证当前登录用户是否有编辑或者发布文章权限！！
+    @GetMapping(value = "/canYouWrite")
+    public String YouWrite(@AuthenticationPrincipal Principal principal, HttpServletRequest request) {
+        try {
+            Principal userPrincipal = request.getUserPrincipal();
+            if (!Objects.isNull(userPrincipal)){
+                String username = userPrincipal.getName();
+                boolean b =  userService.userNameIsExist(username);
+                if (b){//如果b为true则是当前系统用户，可以编写文章！
+                    return  JsonResult.success().toJSON();
+                }
+            }
+            // 构建并返回成功的JSON响应
+            return JsonResult.fail().toJSON();
+        } catch (Exception e) {
+            // 记录异常信息
+            log.error("ArticleIdController canYouWrite Exception", e);
+        }
+        // 如果发生错误，返回服务器异常的JSON响应
+        return JsonResult.fail(CodeType.SERVER_EXCEPTION).toJSON();
+    }
+    //获取项目首页文章分页列表接口！！！
+    @PostMapping(value = "/myArticles")
+    public String getMyArticles(@RequestParam(value = "rows") int rows, @RequestParam(value = "pageNum") int pageNum) {
+        try {
+            // 从文章服务中获取文章管理信息
+            DataMap data = articleService.getMyArticles(rows,pageNum);
+            // 构建并返回成功的JSON响应
+            return JsonResult.build(data).toJSON();
+        } catch (Exception e) {
+            // 记录异常信息
+            log.error("ArticleIdController getMyArticles Exception", e);
+        }
+        // 如果发生错误，返回服务器异常的JSON响应
+        return JsonResult.fail(CodeType.SERVER_EXCEPTION).toJSON();
+    }
+
 }

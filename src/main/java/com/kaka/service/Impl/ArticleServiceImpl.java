@@ -6,6 +6,7 @@ import com.kaka.mapper.ArticleMapper;
 import com.kaka.model.Article;
 import com.kaka.service.ArticleService;
 import com.kaka.utils.DataMap;
+import com.kaka.utils.StringAndArray;
 import com.kaka.utils.StringUtil;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
@@ -13,8 +14,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class ArticleServiceImpl implements ArticleService {
@@ -48,6 +51,7 @@ public class ArticleServiceImpl implements ArticleService {
         dataMap.put("author", article.getAuthor());
         // 返回成功的DataMap，并将数据封装进去
         return DataMap.success().setData(dataMap);
+
     }
 
     @Override
@@ -55,7 +59,7 @@ public class ArticleServiceImpl implements ArticleService {
         // 开启分页插件功能
         PageHelper.startPage(pageNum, rows);
 
-        // 查询文章集合，并且存入集合中
+        // 查询文章集合，并且存入集合中pageInfo是分页查询的插件！！
         List<Article> articleList = articleMapper.getArticleManagement();
         PageInfo<Article> pageInfo = new PageInfo<>(articleList);
 
@@ -65,7 +69,10 @@ public class ArticleServiceImpl implements ArticleService {
 
         // 遍历文章列表，将每篇文章的信息封装到JSONObject中，然后添加到JSONArray中
         for (Article article : articleList) {
+
             JSONObject articleJson = new JSONObject();
+
+            returnJsonObject.put("id",article.getId());
             articleJson.put("id", article.getId());
             articleJson.put("articleId", article.getArticleId());
             articleJson.put("originalAuthor", article.getOriginalAuthor());
@@ -111,6 +118,84 @@ public class ArticleServiceImpl implements ArticleService {
 
         // 返回成功的DataMap
         return DataMap.success();
+    }
+
+    @Override
+    public Article getArticleByid(String id) {
+        return  articleMapper.getArticleById(id);
+    }
+
+    @Override
+    public DataMap getDraftArticle(Article article, String[] tagStr, Integer tagsSizeByName) {
+         HashMap<String,Object> dataMap =new HashMap<> ();
+        dataMap.put("id",article.getId());
+        dataMap.put("articleTitle",article.getArticleTitle());
+        dataMap.put("articleContent",article.getArticleContent());
+        dataMap.put("articleGrade",article.getId());
+        dataMap.put("articleUrl",article.getId());
+        dataMap.put("originalAuthor",article.getId());
+        dataMap.put("articleTags",article.getId());
+        dataMap.put("articleCategories",article.getId());
+        return DataMap.success().setData(dataMap);
+    }
+
+    @Override
+    public DataMap updateAricleById(Article article) {
+
+        Article a = articleMapper.getArticleByIntId(article.getId());
+        if ("原创".equals(article.getArticleType())){
+            article.setOriginalAuthor(article.getOriginalAuthor());
+            String url = "www.biying.com" + "/article" + a.getArticleId();
+            article.setArticleUrl(url);
+
+        }
+            articleMapper.updateArticleById(article);
+        HashMap<String,  Object> dataMap = new HashMap<>();
+        dataMap.put("articleTitle",article.getArticleTitle());
+        dataMap.put("updateDate",article.getUpdateDate());
+        dataMap.put("articleUrl",article.getId());
+        dataMap.put("author",article.getAuthor());
+
+
+
+        return DataMap.success().setData(dataMap);
+    }
+
+    @Override
+    public DataMap getMyArticles(int rows, int pageNum) {
+        //开启分页插件！
+        PageHelper.startPage(pageNum,rows);
+        // 查询文章集合，并且存入集合中pageInfo是分页查询的插件！！
+        List<Article> articleList = articleMapper.getArticleManagement();
+        PageInfo<Article> articlePageInfo = new PageInfo<>(articleList);
+        //新建一个集合封装文章数据
+        ArrayList<Map<String,Object>> newArtilces = new ArrayList<>();
+        //循环遍历集合数据
+        HashMap<String, Object> map;
+         for (Article article : articleList){
+             map  =  new HashMap<>();
+             map.put("thisArticleUrl","/article/"+article.getArticleId());
+             map.put("articleTitle","/article/"+article.getArticleTitle());
+             map.put("articleType","/article/"+article.getArticleType());
+             map.put("originalAuthor","/article/"+article.getOriginalAuthor());
+             map.put("articleCategories","/article/"+article.getArticleCategories());
+             map.put("publishDate","/article/"+article.getPublishDate());
+             map.put("articleTabloid","/article/"+article.getArticleTabloid());
+             map.put("likes","/article/"+article.getLikes());
+             map.put("articleTags", StringAndArray.stringToArray(article.getArticleTags()));
+             newArtilces.add(map);
+
+         }
+        JSONArray returnJsonArray = JSONArray.fromObject(newArtilces);
+       HashMap  <String, Object>  pagInfoMap =new HashMap<>();
+       pagInfoMap.put("pagNum", articlePageInfo.getPageNum());
+        pagInfoMap.put("pagSize", articlePageInfo.getPageSize());
+        pagInfoMap.put("pages", articlePageInfo.getPages());
+        pagInfoMap.put("total", articlePageInfo.getTotal());
+        pagInfoMap.put("isFirstPage", articlePageInfo.isIsFirstPage());
+        pagInfoMap.put("isLastPage", articlePageInfo.isIsLastPage());
+        returnJsonArray.add(pagInfoMap);
+        return DataMap.success().setData(returnJsonArray);
     }
 }
 

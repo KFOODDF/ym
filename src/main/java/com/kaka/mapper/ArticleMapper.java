@@ -50,4 +50,13 @@ public interface ArticleMapper {
      * @param articleId 要删除的文章的ID。
      */
     void deleteArticle(Long articleId);
+
+    Article getArticleByIntId(Integer id);
+
+    void updateArticleById(Article article);
+
+    String getArticleTitleByArtitleId(long articleId);
+
+    String getArticleAuthorByArtitleId(long articleId);
+
 }

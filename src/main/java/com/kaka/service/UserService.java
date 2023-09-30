@@ -14,4 +14,6 @@ public interface UserService  {
 
     //通过用户手机号查找用户
     User findUserPhone(String Phone);
+
+    DataMap getUserPersonalInfo(String username);
 }

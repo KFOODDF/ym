@@ -31,4 +31,16 @@ public interface ArticleService {
      * @return DataMap 返回一个DataMap对象，该对象可能包含删除操作的状态、消息或其他与删除操作相关的数据。
      */
     DataMap deleteArticle(String id);
+
+
+
+    Article getArticleByid(String id);
+
+    DataMap getDraftArticle(Article article, String[] tagStr, Integer tagsSizeByName);
+
+
+    DataMap updateAricleById(Article article);
+
+    DataMap getMyArticles(int rows, int pageNum);
+
 }

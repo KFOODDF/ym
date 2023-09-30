@@ -34,4 +34,10 @@ public class TagServiceImpl implements TagService {
             }
         }
     }
+
+    @Override
+    public Integer getTagsSizeByName(String tagName) {
+
+        return tagMapper.getTagsSizeByName(tagName);
+    }
 }

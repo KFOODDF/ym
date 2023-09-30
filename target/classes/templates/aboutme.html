@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:http="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>关于我 |IT枫斗者</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <meta name="keywords" content="Java,面试辅导,跳槽,面试官,面试题,涨薪,博客,学习,IT,个人,IT枫斗者,程序猿,找工作,学编程，关于我">
+    <meta name="description" content="关注求职、跳槽领域，专注java技术分享，java面试经验、java面试总结及面试资料，零基础培训，一对一培训。">
+
+    <link rel="icon" type="image/x-icon" >
+    <link rel="stylesheet" type="text/css" href="css/aboutmetimeline.css">
+    <link href="https://lib.baomitu.com/lightgallery/1.6.12/css/lightgallery.min.css" rel="stylesheet">
+    <link href="https://lib.baomitu.com/amazeui/2.7.2/css/amazeui.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/all.css">
+    <link rel="stylesheet" href="css/comment.css">
+    <link rel="stylesheet" href="css/aboutme.css">
+    <link href="https://lib.baomitu.com/font-awesome/5.8.0/css/fontawesome.min.css" rel="stylesheet">
+
+    <script src="https://lib.baomitu.com/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://lib.baomitu.com/underscore.js/1.9.1/underscore-min.js"></script>
+    <script src="https://lib.baomitu.com/amazeui/2.7.2/js/amazeui.min.js"></script>
+
+</head>
+<body>
+<audio style="display:none; height: 0" id="bg-music" preload="auto" src="https://javatiaozaowang.obs.cn-east-3.myhuaweicloud.com/itfdz/langlinhua.mp3" loop="loop"></audio>
+<div id="app">
+    <!--引入共有头部-->
+    <div th:replace="header :: header"></div>
+    <!--页面主体-->
+    <div id="main">
+        <div class="am-container">
+            <div class="am-g">
+                <div class="am-u-sm-12 am-u-lg-12">
+                    <div id="wordsView">
+                        <div class="title">
+                            <div class="title-words">
+                                <h1 class="title-words-h1">关于我</h1>
+                            </div>
+
+                        </div>
+                        <div class="zhy-my-words"  data-am-scrollspy="{animation: 'scale-down'}">
+                            <p><i class="am-icon-quote-left " style="float: left"></i></p><br>
+                            <div class="zhy-info">
+                                <p class="zhy-info-words">
+                                    我2013年入坑，至今工作经验将近9年了，刚入行的时候也经历一定时期的迷茫期，四处碰壁，深知这行入行不易。目前在上海工作，同时也是公司的面试官，面试过很多人，曾就职过科大讯飞、美团网、平安等公司。从2017年开始主要做面试辅导、代写修改优化简历、项目包装等，创建自己的平台并记录面试总结和写文章，近几年帮助上千人成功入职，同时也带过很多优秀的徒弟，也顺利找到他们自己满意的工作！辅助的朋友分布在各个互联网公司都是互办互助的资源，快来加入我们吧！”<br><br>
+                                </p>
+                            </div>
+                            <p><i class="am-icon-quote-right " style="float: right"></i></p><br><hr>
+                        </div>
+                        <div class="zhy-hobby">
+                            <blockquote style="padding: 10px 18px">
+                                <b>我们能帮助哪些人？</b>
+                                <ul>
+                                    <li>培训机构出来的人；</li>
+                                    <li>半路转行过来的小白怎么入门；</li>
+                                    <li>职场小白，刚入行很慌很懵逼，任务完成不了，怕度过不了试用期；</li>
+                                    <li>对自己的薪资不满意，想要跳槽，由于很久没有去面试过，现在不知道怎么准备；</li>
+                                </ul>
+                            </blockquote>
+                        </div>
+                        <div class="zhy-hobby">
+                            <blockquote style="padding: 10px 18px">
+                                <b>迷茫期(想必大家刚入门的都经历过)：</b>
+                                <ul>
+                                    <li>学历非常低，公司会要我吗？</li>
+                                    <li>为啥我的简历投出去，都石沉大海了？(粉丝问的特别多)</li>
+                                    <li>刚培训/自学出来，没有项目经验/项目拿不出手怎么办？(粉丝问的特别多)</li>
+                                    <li>按我的情况在上海/其他一线城市工资可以开多少啊？</li>
+                                    <li>我想入行，有具体的学习路线吗？</li>
+                                    <li>网上资料太杂了，怎么找学习资料啊？</li>
+                                    <li>我想去培训，怎么去选择培训机构呢？</li>
+                                    <li>我是选择考研呢，还是直接去工作啊？</li>
+                                    <li>以前是别的行业的现在转行做这个，应该怎么做？</li>
+                                    <li>....</li>
+                                </ul>
+                            </blockquote>
+                            <span style="font-size: 14px;color: #555;"><b>说明：</b>该网站1.0版本是张海洋开发并且开源到GitHub上，我们基于原版本基础上进行二次开发和优化，并且也开源出来，网站所有资料都给大家免费学习与参考！</span>
+                        </div>
+                        <div class="zhy-title-QRCode" style="margin-top: 20px">
+                            <p><i class="am-icon-quote-left " style="float: left"></i></p><br>
+                            <div class="zhy-title-QRCode-word">
+                                <strong>欢迎关注我的微信公众号： IT枫斗者</strong><br>
+                                <img class="enlargePicture" src="https://javatiaozaowang.obs.cn-east-3.myhuaweicloud.com/itfdz/qrcode_for_gh_34cbbc625ac0_258.jpg" data-src="https://javatiaozaowang.obs.cn-east-3.myhuaweicloud.com/itfdz/qrcode_for_gh_34cbbc625ac0_258.jpg"><br>
+                                <span>关注公众号回复“开源博客”，项目启动有问题找枫哥！<br></span>
+                            </div>
+                            <p><i class="am-icon-quote-right " style="float: right"></i></p>
+                        </div>
+                        <br><br><hr data-am-widget="divider" style="" class="am-divider am-divider-dashed" />
+
+                        <div style="text-align: right;margin: 30px auto">
+                            <i class="am-icon-paper-plane am-icon-spin"></i>
+                            <i class="am-icon-paper-plane-o am-icon-spin" style="margin-left: 60px"></i><br>
+                        </div>
+                        <hr data-am-widget="divider" style="" class="am-divider am-divider-dashed" />
+                        <div class="zhy-opinion">
+                            <div class="zhy-opinion-title">
+                                <h1 style="font-size: 30px;font-weight: 400">意见反馈</h1>
+                            </div>
+                            <div class="zhy-erha">
+                                <img src="https://zhy-myblog.oss-cn-shenzhen.aliyuncs.com/static/img/loading.gif" data-src="https://zhy-myblog.oss-cn-shenzhen.aliyuncs.com/static/img/erha_opinion.gif" class="enlargePicture am-img-thumbnail">
+                            </div>
+                            <div class="zhy-opinion-words">
+                                <p><strong><u><i>若本博客有做的不好的地方(涉及版权及其他问题)，请留言私信我进行整改。</i></u></strong></p>
+                            </div>
+                        </div>
+                        <br><br><hr data-am-widget="divider" style="" class="am-divider am-divider-dashed" />
+                        <div class="zhy-life">
+                            <div style="text-align: right;margin: 30px auto">
+                                <i class="am-icon-arrows am-icon-spin"></i>
+                                <i class="am-icon-arrows am-icon-spin" style="margin-left: 60px"></i><br>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="comment">
+                        <div class="comment-top">
+                            <div class="comment-top-input" th:if="${#httpServletRequest.remoteUser}">
+                                <textarea id="comment" placeholder="客官，来说两句吧..."></textarea>
+                            </div>
+                            <div class="comment-top-input" th:unless="${#httpServletRequest.remoteUser}">
+                                <div class="goToLogin">
+                                    &nbsp;&nbsp;&nbsp;<a id="toLogin">登录</a>后才可以发表留言呦...
+                                </div>
+                            </div>
+                            <div class="commentBtn">
+                                <button id="commentBtn" type="button" class="am-btn am-btn-secondary">发表留言</button>
+                            </div>
+                        </div>
+                        <!--页面留言-->
+                        <div class="comment-bottom">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--引入共有底部-->
+    <div th:replace="footer :: footer"></div>
+
+    <!--消息盒子+反馈-->
+    <div th:replace="other :: other"></div>
+
+    <script>
+
+        //音乐自动播放
+        $(document).ready(function(){
+            autoPlayMusic();
+            audioAutoPlay();
+        });
+        function audioAutoPlay() {
+            var audio = document.getElementById('bg-music');
+            audio.play();
+            document.addEventListener("WeixinJSBridgeReady", function () {
+                audio.play();
+            }, false);
+        }
+        // 音乐播放
+        function autoPlayMusic() {
+            // 自动播放音乐效果，解决浏览器或者APP自动播放问题
+            function musicInBrowserHandler() {
+                musicPlay(true);
+                document.body.removeEventListener('touchstart', musicInBrowserHandler);
+            }
+            document.body.addEventListener('touchstart', musicInBrowserHandler);
+            // 自动播放音乐效果，解决微信自动播放问题
+            function musicInWeixinHandler() {
+                musicPlay(true);
+                document.addEventListener("WeixinJSBridgeReady", function () {
+                    musicPlay(true);
+                }, false);
+                document.removeEventListener('DOMContentLoaded', musicInWeixinHandler);
+            }
+            document.addEventListener('DOMContentLoaded', musicInWeixinHandler);
+        }
+        function musicPlay(isPlay) {
+            var media = document.querySelector('#bg-music');
+            if (isPlay && media.paused) {
+                media.play();
+            }
+            if (!isPlay && !media.paused) {
+                media.pause();
+            }
+        }
+        (function(){
+            var canvas = $('#canvas');
+
+            if (!canvas[0].getContext) {
+                $("#error").show();
+                return false;        }
+
+            var width = canvas.width();
+            var height = canvas.height();
+            canvas.attr("width", width);
+            canvas.attr("height", height);
+            var opts = {
+                seed: {
+                    x: width / 2 - 20,
+                    color: "rgb(190, 26, 37)",
+                    scale: 2
+                },
+                branch: [
+                    [535, 680, 570, 250, 500, 200, 30, 100, [
+                        [540, 500, 455, 417, 340, 400, 13, 100, [
+                            [450, 435, 434, 430, 394, 395, 2, 40]
+                        ]],
+                        [550, 445, 600, 356, 680, 345, 12, 100, [
+                            [578, 400, 648, 409, 661, 426, 3, 80]
+                        ]],
+                        [539, 281, 537, 248, 534, 217, 3, 40],
+                        [546, 397, 413, 247, 328, 244, 9, 80, [
+                            [427, 286, 383, 253, 371, 205, 2, 40],
+                            [498, 345, 435, 315, 395, 330, 4, 60]
+                        ]],
+                        [546, 357, 608, 252, 678, 221, 6, 100, [
+                            [590, 293, 646, 277, 648, 271, 2, 80]
+                        ]]
+                    ]]
+                ],
+                bloom: {
+                    num: 700,
+                    width: 1080,
+                    height: 650,
+                },
+                footer: {
+                    width: 1200,
+                    height: 5,
+                    speed: 10,
+                }
+            }
+
+            var tree = new Tree(canvas[0], width, height, opts);
+            var seed = tree.seed;
+            var foot = tree.footer;
+            var hold = 1;
+
+            canvas.click(function(e) {
+                var offset = canvas.offset(), x, y;
+                x = e.pageX - offset.left;
+                y = e.pageY - offset.top;
+                if (seed.hover(x, y)) {
+                    hold = 0;
+                    canvas.unbind("click");
+                    canvas.unbind("mousemove");
+                    canvas.removeClass('hand');
+                }
+            }).mousemove(function(e){
+                var offset = canvas.offset(), x, y;
+                x = e.pageX - offset.left;
+                y = e.pageY - offset.top;
+                canvas.toggleClass('hand', seed.hover(x, y));
+            });
+
+            var seedAnimate = eval(Jscex.compile("async", function () {
+                seed.draw();
+                while (hold) {
+                    $await(Jscex.Async.sleep(10));
+                }
+                while (seed.canScale()) {
+                    seed.scale(0.95);
+                    $await(Jscex.Async.sleep(10));
+                }
+                while (seed.canMove()) {
+                    seed.move(0, 2);
+                    foot.draw();
+                    $await(Jscex.Async.sleep(10));
+                }
+            }));
+
+            var growAnimate = eval(Jscex.compile("async", function () {
+                do {
+                    tree.grow();
+                    $await(Jscex.Async.sleep(10));
+                } while (tree.canGrow());
+            }));
+
+            var flowAnimate = eval(Jscex.compile("async", function () {
+                do {
+                    tree.flower(2);
+                    $await(Jscex.Async.sleep(10));
+                } while (tree.canFlower());
+            }));
+
+            var moveAnimate = eval(Jscex.compile("async", function () {
+                tree.snapshot("p1", 240, 0, 610, 680);
+                while (tree.move("p1", 500, 0)) {
+                    foot.draw();
+                    $await(Jscex.Async.sleep(10));
+                }
+                foot.draw();
+                tree.snapshot("p2", 500, 0, 610, 680);
+
+                // 会有闪烁不得意这样做, (＞﹏＜)
+                canvas.parent().css("background", "url(" + tree.toDataURL('image/png') + ")");
+                canvas.css("background", "#ffe");
+                $await(Jscex.Async.sleep(300));
+                canvas.css("background", "none");
+            }));
+
+            var jumpAnimate = eval(Jscex.compile("async", function () {
+                var ctx = tree.ctx;
+                while (true) {
+                    tree.ctx.clearRect(0, 0, width, height);
+                    tree.jump();
+                    foot.draw();
+                    $await(Jscex.Async.sleep(25));
+                }
+            }));
+
+            var runAsync = eval(Jscex.compile("async", function () {
+                $await(seedAnimate());
+                $await(growAnimate());
+                $await(flowAnimate());
+                $await(moveAnimate());
+
+                textAnimate().start();
+
+                $await(jumpAnimate());
+            }));
+
+            runAsync().start();
+        })();
+    </script>
+</div>
+
+<script src="js/all.js"></script>
+<script src="js/leaveMessage.js"></script>
+<!--放大图片插件-->
+<script src="js/lightgallery/lightgallery.js"></script>
+<script src="js/lightgallery/picturefill.min.js"></script>
+<script src="js/lightgallery/lg-pager.js"></script>
+<script src="js/lightgallery/lg-autoplay.js"></script>
+<script src="js/lightgallery/lg-fullscreen.js"></script>
+<script src="js/lightgallery/lg-zoom.js"></script>
+<script>
+    lightGallery(document.getElementById('wordsView'));
+</script>
+</body>
+</html>

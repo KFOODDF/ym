@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:http="http://www.w3.org/1999/xhtml"
+      xmlns:width="http://www.w3.org/1999/xhtml" xmlns:height="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>私教带徒|IT枫斗者</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <meta name="keywords" content="Java,面试辅导,跳槽,面试官,面试题,涨薪,博客,学习,IT,个人,IT枫斗者,程序猿,找工作,学编程，更新">
+    <meta name="description" content="关注求职、跳槽领域，专注java技术分享，java面试经验、java面试总结及面试资料，零基础培训，一对一培训。">
+
+    <link rel="icon" type="image/x-icon" >
+    <link href="https://lib.baomitu.com/amazeui/2.7.2/css/amazeui.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/all.css">
+    <link rel="stylesheet" href="css/comment.css">
+    <link rel="stylesheet" href="css/update.css">
+    <link href="https://lib.baomitu.com/font-awesome/5.8.0/css/fontawesome.min.css" rel="stylesheet">
+
+    <script src="https://lib.baomitu.com/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://lib.baomitu.com/underscore.js/1.9.1/underscore-min.js"></script>
+    <script src="https://lib.baomitu.com/amazeui/2.7.2/js/amazeui.min.js"></script>
+
+    <style>
+
+        #bigu {
+            position: relative;
+            height: 380px;
+            /*border: 1px solid #FF0000;*/
+            padding: 20px;
+            background-color: rgb(246 247 248);
+        }
+
+        .u2 {
+            float: left;
+            background-color: #c117ff;
+            width: 100px;
+            height: 50px;
+            text-align: center;
+            vertical-align: middle;
+            left: 40px;
+            border: 1px solid yellow;
+            line-height: 50px;
+            padding-left: 14px;
+            padding-right: 20px;
+            color: whitesmoke;
+        }
+
+        .u2_1 {
+            float: left;
+            background-color: white;
+            width: 300px;
+            height: 50px;
+            border: 1px solid #F6F7F8;
+            line-height: 50px;
+            padding-left: 14px;
+
+        }
+
+        .option {
+            margin: 20px 20px;
+            display: inline-block;
+            /*width: 40%;*/
+            font-size: 10px;
+            height: 28px;
+            line-height: 28px;
+        }
+
+        .left {
+            margin-left: 20%;
+        }
+
+        .top {
+            margin-top: 5%;
+        }
+
+        #i1 {
+            background-color: #5f1b86;
+        }
+
+        #i2 {
+
+            background-color: #af58d0;
+        }
+
+        #i3 {
+            background-color: #fdad12;
+        }
+
+        #i4 {
+            background-color: #08b6ee;
+        }
+
+        #i5 {
+            background-color: #7fc71f;
+        }
+
+        #i6 {
+
+            background-color: #63494c;
+        }
+
+        #i7 {
+            background-color: #00b895;
+        }
+
+        #i8 {
+            background-color: #f25767;
+        }
+
+        .topcontent {
+            margin-bottom: 20px;
+            font-size: 14px;
+            color: #7f8c8d;
+        }
+
+        .bottoncontent {
+            margin-top: 20px;
+            color: #7f8c8d;
+        }
+
+        h1{
+            text-align: center;
+            /*color: #FF0000;*/
+
+        }
+
+    </style>
+</head>
+<body>
+<div id="app">
+    <!--引入共有头部-->
+    <div th:replace="header :: header"></div>
+    <!--页面主体-->
+    <div id="main">
+        <div class="am-container">
+            <div class="am-g">
+                <div class="am-u-sm-12 am-u-lg-12">
+                    <div id="wordsView">
+                        <div class="title">
+                            <div class="title-words">
+                                <h1 class="title-words-h1">私教带徒</h1>
+                            </div>
+                        </div>
+                        <div class="zhy-my-words"  data-am-scrollspy="{animation: 'scale-down'}">
+                            <p><i class="am-icon-quote-left " style="float: left"></i></p><br>
+                            <div class="zhy-info">
+                                <p class="zhy-info-words">
+                                    Java跳蚤网是由枫哥和罗老师以及一群志同道合的开发朋友创立的，致力于解决广大编程爱好者入门难、求学难以及面试和跳槽等问题。由于学习编程的过程较为困难，学习者没有具体的学习方向，将要达到的就业水平不明，总会因为一些小问题困扰几个小时，这样会严重的影响整体的学习效率以及学习的信心。而Java跳蚤网要为学习者解决这些问题，我们会提供具有多年开发经验的指导老师，全程二对一给予学生针对性指导，通过文字、语音、远程的方式指导学生进行学习。以及最全面的系统学习教程、作业、项目、简历指导、模拟面试，指导服务一直持续到就业为止。
+                                </p>
+                            </div>
+                            <p><i class="am-icon-quote-right " style="float: right"></i></p><br><hr>
+                        </div>
+                        <div>
+                            <img src="/blogImag/xuetuliucheng.jpg" width="100%" height="100%">
+                        </div>
+                        <div class="zhy-hobby">
+                            <blockquote style="padding: 10px 18px">
+                                <h1>报名条件</h1>
+                                <ul>
+                                    <li> 1.首先了解一下您的学历和毕业时间，然后给你一些基础资料让你学一个星期，之后评估一下你的基础看是否适合学这个(这也是为了你好，如果真的不适合做开发，可以考虑做其他的，如测试，技术支持，实施等，总比浪费了宝贵的时间和精力好！)。</p>
+                                    </li>
+                                    <li>2.基础条件满足，接下来我针对你的情况制订学习计划，阶段性学习，一个阶段学完我带着测试题来找你检测一下，通过继续下个阶段。所有学完后我会弄两个公司真实项目来进行实战训练。(在学习的过程中任何问题远程控制帮助解决，对于理解比较困难的知识点我单独开课讲解！)。</p>
+                                    </li>
+                                    <li>3.全部学完后，接下来进入面试辅导环节。面试辅导:面试资料(有录音+面试总结+笔试题+面试题)+简历代写+项目讲解+模拟面试+面试总结+解决问题+离职模板等+背景调查帮助+试用期解决问题(一直陪伴到入职！)。</p>
+                                    </li>
+                                </ul>
+                            </blockquote>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--引入共有底部-->
+    <div th:replace="footer :: footer"></div>
+
+    <!--消息盒子+反馈-->
+    <div th:replace="other :: other"></div>
+</div>
+
+<script src="js/all.js"></script>
+<script src="js/leaveMessage.js"></script>
+
+</body>
+</html>

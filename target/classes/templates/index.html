@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:http="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+    <meta charset="UTF-8">
+    <title> IT枫斗者</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <meta name="keywords" content="Java,面试辅导,跳槽,面试官,面试题,涨薪,博客,学习,IT,个人,IT枫斗者,程序猿,找工作,学编程">
+    <meta name="description" content="关注求职、跳槽领域，专注java技术分享，java面试经验、java面试总结及面试资料，零基础培训，一对一培训。">
+
+    <link rel="icon" type="image/x-icon" href="">
+    <link href="https://lib.baomitu.com/amazeui/2.7.2/css/amazeui.min.css" rel="stylesheet">
+    <link href="https://lib.baomitu.com/font-awesome/5.8.0/css/fontawesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/all.css">
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/plugs_paging.css">
+
+    <script src="https://lib.baomitu.com/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://lib.baomitu.com/underscore.js/1.9.1/underscore-min.js"></script>
+    <script src="js/lastUrl.js"></script>
+    <script src="https://lib.baomitu.com/amazeui/2.7.2/js/amazeui.min.js"></script>
+
+</head>
+<body>
+<div id="app">
+    <!--主页头部含有小屏幕时名片，不应使用共有头部-->
+    <div class="header">
+        <div class="am-topbar" style="margin-bottom: 0">
+            <h1 class="am-topbar-brand">
+                <a href="/" class="blogTitleName"><img src="/blogImag/itfdz.jpg" class="imgStyle"> IT枫斗者</a>
+            </h1>
+            <button class="am-topbar-btn am-topbar-toggle am-btn am-btn-sm am-btn-success am-show-sm-only"
+                    style="background-color: #CCCCCC;border-color: white;border-radius: 6px"
+                    data-am-collapse="{target: '#doc-topbar-collapse'}"><span class="am-sr-only">导航切换</span> <span
+                    class="am-icon-bars"></span></button>
+
+            <div id="personal-card" class="am-dropdown am-show-md-down" data-am-dropdown style="float: right">
+                <button id="personal-card-btn" class="am-btn am-btn-success am-dropdown-toggle" style="padding: 0"><img
+                        src="/blogImag/itfdz.jpg"><span
+                        class="am-icon-caret-down"></span></button>
+                <div class="am-dropdown-content">
+                    <div class="personal-card-show" style="text-align: center">
+                        <div class="personal-card-show-img">
+                            <img src="/blogImag/itfdz.jpg">
+                        </div>
+                        <div class="personal-card-show-name">
+                            <h4 style="font-weight: 500">IT枫斗者</h4>
+                        </div>
+                        <div class="personal-card-show-words">
+                            <small style="font-size: 13px;color: #808080ad;">
+                                关注求职、跳槽领域，专注java技术分享，java面试经验、java面试总结及面试资料，零基础培训，一对一培训。
+                            </small>
+                        </div>
+                        <div class="personal-card-show-connection" style="margin-top: 10px">
+                            <span style="color: #009688">微信：itfdz666</span><br>
+                            <span style="color: #009688">QQ：158672670</span><br>
+                        </div>
+                        <div class="personal-card-show-attention_btn">
+                            <button class="myCardBtn am-btn am-btn-secondary am-round attention_btn"
+                                    data-am-offcanvas="{target: '#doc-oc-demo1'}" style="margin-top: 10px">扫描二维码关注我
+                            </button>
+                        </div>
+                        <!--名片左侧栏-->
+                        <div id="doc-oc-demo1" class="am-offcanvas">
+                            <div class="am-offcanvas-bar">
+                                <div class="am-offcanvas-content">
+                                    <p>
+                                        关注求职<br/>
+                                        跳槽领域<br/>
+                                        专注java技术分享<br>
+                                        java面试经验<br>
+                                        java面试总结及面试资料<br>
+                                        零基础培训<br>
+                                        一对一培训
+                                    </p>
+
+                                    <div class="halving-line">
+                                        <i class="am-icon-hand-o-down "></i>
+                                        <i class="am-icon-hand-o-down "></i>
+                                        <i class="am-icon-hand-o-down "></i>
+                                    </div>
+                                    <div class="halving-line-words">
+                                        <p>想交个朋友吗<br>那就快扫下面吧</p>
+                                    </div>
+                                    <hr data-am-widget="divider" style="width: 50%"
+                                        class="am-divider am-divider-dashed"/>
+                                    <div class="zhy-qq-weixin">
+                                        <div class="zhy-qq-box">
+                                            <p>QQ</p>
+                                            <img src="/blogImag/qq.png" class=" am-img-thumbnail am-radius">
+                                        </div>
+                                        <div class="zhy-weixin-box">
+                                            <p>微信</p>
+                                            <img src="blogImag/wx.jpg" class=" am-img-thumbnail am-radius">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="personal-card-show-ico">
+                            <hr style="margin-top: 10px">
+                            <div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="am-collapse am-topbar-collapse" id="doc-topbar-collapse">
+                <ul class="am-nav am-nav-pills am-topbar-nav">
+                    <li><a class="top_bar" href="/" style="cursor: pointer;"><span class="am-icon-home"></span>&nbsp;首页</a> </li>
+                    <li><a class="top_bar" href="/categories" style="cursor: pointer;"><span class="am-icon-th"></span>&nbsp;博客分类</a></li>
+                    <li><a class="top_bar" href="/friendlylink" style="cursor: pointer;"><span class="am-icon-street-view"></span>&nbsp;友情链接</a></li>
+                    <li><a class="top_bar" href="/archives" style="cursor: pointer;"><span class="am-icon-archive"></span>&nbsp;面试辅导</a></li>
+                    <!--                    <li><a class="top_bar" href="/tags" style="cursor: pointer;"><span class="am-icon-tags"></span>&nbsp;标签</a>-->
+                    <!--                    </li>-->
+                    <li><a class="top_bar" href="/update" style="cursor: pointer;"><span class="am-icon-calendar-plus-o"></span>&nbsp;带徒服务</a></li>
+                    <li><a class="top_bar" href="/aboutme" style="cursor: pointer;"><span class="am-icon-user"></span>&nbsp;关于我们</a> </li>
+                </ul>
+
+                <!--<div class="am-topbar-right reward am-show-sm-down">-->
+                    <!--<a href="/reward" style="text-decoration: none">-->
+                        <!--<img class="am-circle" src="/img/favicon.png">-->
+                        <!--<span class="reward-word">公益募捐</span>-->
+                    <!--</a>-->
+                <!--</div>-->
+
+                <div class="am-topbar-right" th:if="${#httpServletRequest.remoteUser}">
+                    <div class="am-dropdown" data-am-dropdown="{boundary: '.am-topbar'}">
+                        <button class="personalSpace am-btn am-btn-secondary am-topbar-btn am-btn-sm am-dropdown-toggle"
+                                data-am-dropdown-toggle><span sec:authentication="name"></span> <span
+                                class="am-icon-caret-down"></span></button>
+                        <ul class="am-dropdown-content">
+                            <li><a href="/user" sec:authorize="hasRole('ROLE_USER')">个人主页</a></li>
+                            <li><a href="/superadmin" sec:authorize="hasRole('ROLE_SUPERADMIN')">网站后台管理</a></li>
+                            <li><a href="/user" class="news">消息<span
+                                    class="newsNum am-badge am-badge-danger"></span></a></li>
+                            <li><a class="feedbackClick">反馈</a></li>
+                            <hr style="margin: 10px 0 5px 0;">
+                            <li><a th:href="@{/logout}">退出登录</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="am-topbar-right" th:unless="${#httpServletRequest.remoteUser}">
+                    <a href="/register" class="am-btn am-btn-primary am-topbar-btn am-btn-sm"
+                       style="color: white">注册</a>
+                </div>
+                <div class="am-topbar-right" th:unless="${#httpServletRequest.remoteUser}">
+                    <a href="/login" class="loginBtn am-btn am-btn-primary am-topbar-btn am-btn-sm"
+                       style="color: white">登录</a>
+                </div>
+                <div class="am-topbar-right writing am-hide-md-down">
+                    <a href="/editor" target="_blank" style="text-decoration: none">
+                        <img class="am-circle"
+                             src="https://zhy-myblog.oss-cn-shenzhen.aliyuncs.com/static/img/loading.gif"
+                             data-src="https://zhy-myblog.oss-cn-shenzhen.aliyuncs.com/static/img/writing.png">
+                        <span class="write-word">写博客</span>
+                    </a>
+                </div>
+                <!--<div class="am-topbar-right reward am-hide-sm-down">-->
+                    <!--<a href="/reward" style="text-decoration: none">-->
+                        <!--<img class="am-circle" src="/img/favicon.png">-->
+                        <!--<span class="reward-word">公益募捐</span>-->
+                    <!--</a>-->
+                <!--</div>-->
+
+            </div>
+        </div>
+    </div>
+    <!--页面主体-->
+    <div id="main" style="margin-top: 16px">
+
+        <div class="am-g">
+            <div class="am-u-sm-12 am-u-lg-9">
+                <div class="radioBroadcast">
+                    <i class="am-icon-volume-up" style="margin-left: 10px;color: #fbd602"></i>
+                    <div class="roll">
+                        <ul>
+                            <li onclick="javascript:document.getElementById('01').click();"><a id="01" href="https://www.javatiaozao.com/">找工作学编程，就上Java跳蚤网！</a></li>
+                            <li onclick="javascript:document.getElementById('02').click();"><a id="02" href="https://www.bilibili.com/video/BV12U4y1n7xM">二对一私教带学徒辅助高薪就业流程详解！</a></li>
+                            <li onclick="javascript:document.getElementById('03').click();"><a id="03" href="https://mp.weixin.qq.com/s/1TvogJBRAGiziD8in__05g">私教带徒及大厂面试专攻成功案例！</a></li>
+                            <li onclick="javascript:document.getElementById('04').click();"><a id="04" href="https://www.bilibili.com/video/BV1sM4y1T7Ln/">枫哥带你去面试，全套面试辅导辅助内容流程介绍！</a></li>
+                            <li onclick="javascript:document.getElementById('05').click();"><a id="05" href="https://mp.weixin.qq.com/s/f9OnkG1XQoiHzGV9656XYw">枫哥带你去面试，面试辅导成功案例！</a></li>
+                            <li>人生是有限的，将来的你一定会感谢现在“枫斗”的你，让我们一起去“枫斗”吧！。</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="am-g">
+            <div class="am-u-sm-12 am-u-lg-3 am-hide-md-down">
+                <div id="left">
+                    <div class="myCard">
+                        <div class="am-g">
+                            <div class="am-u-sm-5">
+                                <div class="img-title">
+                                    <img class="img" src="/blogImag/itfdz.jpg">
+                                </div>
+                            </div>
+                            <div class="am-u-sm-7" style="padding: 0 20px 0 0;">
+                                <div class="img-words">
+                                    <h3 id="name">IT枫斗者</h3>
+                                    <small style="font-size: 13px;color: #808080ad">
+                                        关注求职、跳槽领域，专注java技术分享，java面试经验、java面试总结及面试资料，零基础培训，一对一培训。
+                                    </small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="clear"></div>
+                        <div id="connection" style="font-size: 14px">
+                            <span style="color: #009688">微信：itfdz666</span><br>
+                            <span style="color: #009688">QQ：158672670</span><br>
+                            <div id="follow">
+                                <button class="myCardBtn am-btn am-btn-secondary am-round attention_btn"
+                                        data-am-offcanvas="{target: '#doc-oc-demo2', effect: 'push'}">扫描二维码关注我
+                                </button>
+                            </div>
+                            <!--左侧栏-->
+                            <div id="doc-oc-demo2" class="am-offcanvas">
+                                <div class="am-offcanvas-bar">
+                                    <div class="am-offcanvas-content">
+                                        <p>
+                                            关注求职<br/>
+                                            跳槽领域<br/>
+                                            专注java技术分享<br>
+                                            java面试经验<br>
+                                            java面试总结及面试资料<br>
+                                            零基础培训<br>
+                                            一对一培训
+                                        </p>
+
+                                        <div class="halving-line">
+                                            <i class="am-icon-hand-o-down "></i>
+                                            <i class="am-icon-hand-o-down "></i>
+                                            <i class="am-icon-hand-o-down "></i>
+                                        </div>
+                                        <div class="halving-line-words">
+                                            <p>想交个朋友吗<br>那就快扫下面吧</p>
+                                        </div>
+                                        <hr data-am-widget="divider" style="width: 50%"
+                                            class="am-divider am-divider-dashed"/>
+                                        <div class="zhy-qq-weixin">
+                                            <div class="zhy-qq-box">
+                                                <p>QQ</p>
+                                                <img src="blogImag/qq.png" class="am-img-thumbnail am-radius">
+                                            </div>
+                                            <div class="zhy-weixin-box">
+                                                <p>微信</p>
+                                                <img src="blogImag/wx.jpg" class="am-img-thumbnail am-radius">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="icons-row">
+                            <div class="icons">
+
+                                <div class="icon">
+                                    <a href="https://blog.csdn.net/Andrew_Chenwq" target="_blank" title="CSDN"><img
+                                            src="https://javatiaozaowang.obs.cn-east-3.myhuaweicloud.com/itfdz/csdn.png"
+                                            style="width: 30px"
+                                            data-am-popover="{content: 'CSDN', trigger: 'hover focus'}"></a>
+                                </div>
+                                <div class="icon">
+                                    <a href="https://www.zhihu.com/people/fu-chan-ke-chen-zhu-ren/posts" target="_blank" title="知乎账号"><img
+                                            src="/img/zhihu.jpg"
+                                            style="width: 30px"
+                                            data-am-popover="{content: '知乎账号', trigger: 'hover focus'}"></a>
+                                </div>
+                                <div class="icon">
+                                    <a href="https://space.bilibili.com/449100051" target="_blank" title="哔哩哔哩账号"><img
+                                            src="/img/bilibili.jpg"
+                                            style="width: 30px"
+                                            data-am-popover="{content: '哔哩哔哩账号', trigger: 'hover focus'}"></a>
+                                </div>
+                                <div class="icon">
+                                    <a href="https://www.javatiaozao.com/" target="_blank" title="Java跳蚤网"><img
+                                            src="/img/tiaozaowang.jpg"
+                                            style="width: 30px"
+                                            data-am-popover="{content: 'Java跳蚤网', trigger: 'hover focus'}"></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="new-comment">
+                        <div data-am-widget="list_news" class="am-list-news am-list-news-default">
+                            <div class="am-list-news-hd am-cf">
+                                <a class="newComments">
+                                    <h2>最新评论</h2>
+                                </a>
+                            </div>
+                            <div class="am-list-news-bd">
+                                <ul class="am-list">
+                                    <li class="am-g am-list-item-dated" style="height: 62px">
+
+                                    </li>
+                                    <li class="am-g am-list-item-dated" style="height: 62px">
+
+                                    </li>
+                                    <li class="am-g am-list-item-dated" style="height: 62px">
+
+                                    </li>
+                                    <li class="am-g am-list-item-dated" style="height: 62px">
+
+                                    </li>
+                                    <li class="am-g am-list-item-dated" style="height: 62px">
+
+                                    </li>
+                                </ul>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="new-leaveWord">
+                        <div data-am-widget="list_news" class="am-list-news am-list-news-default">
+                            <div class="am-list-news-hd am-cf">
+                                <a class="newLeaveWord">
+                                    <h2>最新留言</h2>
+                                </a>
+                            </div>
+                            <div class="am-list-news-bd">
+                                <ul class="am-list">
+                                    <li class="am-g am-list-item-dated" style="height: 62px">
+
+                                    </li>
+                                    <li class="am-g am-list-item-dated" style="height: 62px">
+
+                                    </li>
+                                    <li class="am-g am-list-item-dated" style="height: 62px">
+
+                                    </li>
+                                    <li class="am-g am-list-item-dated" style="height: 62px">
+
+                                    </li>
+                                    <li class="am-g am-list-item-dated" style="height: 62px">
+
+                                    </li>
+                                </ul>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="showArticle am-u-sm-12 am-u-lg-6">
+                <div class="articles">
+                    <div class="center">
+                        <div class="empty">
+                            <header class="article-header">
+                                <h1 itemprop="name">
+                                    <a class="article-title" href="#" target="_blank">&nbsp;</a>
+                                </h1>
+                                <div class="article-meta row">
+                                    <span class="articleType am-badge am-badge-success">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+
+                                </div>
+                            </header>
+                            <div class="article-entry" style="height: 200px">
+                            </div>
+                            <div class="read-all">
+                                <a href="#" target="_blank">阅读全文 <i class="am-icon-angle-double-right"></i></a>
+                            </div>
+                            <hr>
+                            <div class="article-tags">
+                                <i class="am-icon-tag"><a class="tag" href="#"> &nbsp;&nbsp;&nbsp;&nbsp;</a></i>
+                                <i class="am-icon-tag"><a class="tag" href="#"> &nbsp;&nbsp;&nbsp;&nbsp;</a></i>
+                                <!--<span class="likes"><i class="am-icon-heart"> 个喜欢</i></span>-->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="center">
+                        <div class="empty">
+                            <header class="article-header">
+                                <h1 itemprop="name">
+                                    <a class="article-title" href="#" target="_blank">&nbsp;</a>
+                                </h1>
+                                <div class="article-meta row">
+                                    <span class="articleType am-badge am-badge-success">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+
+                                </div>
+                            </header>
+                            <div class="article-entry" style="height: 200px">
+                            </div>
+                            <div class="read-all">
+                                <a href="#" target="_blank">阅读全文 <i class="am-icon-angle-double-right"></i></a>
+                            </div>
+                            <hr>
+                            <div class="article-tags">
+                                <i class="am-icon-tag"><a class="tag" href="#"> &nbsp;&nbsp;&nbsp;&nbsp;</a></i>
+                                <i class="am-icon-tag"><a class="tag" href="#"> &nbsp;&nbsp;&nbsp;&nbsp;</a></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="center">
+                        <div class="empty">
+                            <header class="article-header">
+                                <h1 itemprop="name">
+                                    <a class="article-title" href="#" target="_blank">&nbsp;</a>
+                                </h1>
+                                <div class="article-meta row">
+                                    <span class="articleType am-badge am-badge-success">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+
+                                </div>
+                            </header>
+                            <div class="article-entry" style="height: 200px">
+                            </div>
+                            <div class="read-all">
+                                <a href="#" target="_blank">阅读全文 <i class="am-icon-angle-double-right"></i></a>
+                            </div>
+                            <hr>
+                            <div class="article-tags">
+                                <i class="am-icon-tag"><a class="tag" href="#"> &nbsp;&nbsp;&nbsp;&nbsp;</a></i>
+                                <i class="am-icon-tag"><a class="tag" href="#"> &nbsp;&nbsp;&nbsp;&nbsp;</a></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="center">
+                        <div class="empty">
+                            <header class="article-header">
+                                <h1 itemprop="name">
+                                    <a class="article-title" href="#" target="_blank">&nbsp;</a>
+                                </h1>
+                                <div class="article-meta row">
+                                    <span class="articleType am-badge am-badge-success">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+
+                                </div>
+                            </header>
+                            <div class="article-entry" style="height: 200px">
+                            </div>
+                            <div class="read-all">
+                                <a href="#" target="_blank">阅读全文 <i class="am-icon-angle-double-right"></i></a>
+                            </div>
+                            <hr>
+                            <div class="article-tags">
+                                <i class="am-icon-tag"><a class="tag" href="#"> &nbsp;&nbsp;&nbsp;&nbsp;</a></i>
+                                <i class="am-icon-tag"><a class="tag" href="#"> &nbsp;&nbsp;&nbsp;&nbsp;</a></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="center">
+                        <div class="empty">
+                            <header class="article-header">
+                                <h1 itemprop="name">
+                                    <a class="article-title" href="#" target="_blank">&nbsp;</a>
+                                </h1>
+                                <div class="article-meta row">
+                                    <span class="articleType am-badge am-badge-success">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+
+                                </div>
+                            </header>
+                            <div class="article-entry" style="height: 200px">
+                            </div>
+                            <div class="read-all">
+                                <a href="#" target="_blank">阅读全文 <i class="am-icon-angle-double-right"></i></a>
+                            </div>
+                            <hr>
+                            <div class="article-tags">
+                                <i class="am-icon-tag"><a class="tag" href="#"> &nbsp;&nbsp;&nbsp;&nbsp;</a></i>
+                                <i class="am-icon-tag"><a class="tag" href="#"> &nbsp;&nbsp;&nbsp;&nbsp;</a></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="my-row" id="page-father">
+                    <div id="pagination">
+                        <ul class="am-pagination  am-pagination-centered">
+                            <li class="am-disabled"><a href="#">&laquo; 上一页</a></li>
+                            <li class="am-active"><a href="#">1</a></li>
+                            <li><a href="#">2</a></li>
+                            <li><a href="#">3</a></li>
+                            <li><a href="#">4</a></li>
+                            <li><a href="#">5</a></li>
+                            <li><a href="#">下一页 &raquo;</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="new-comment am-show-sm-only">
+                    <div data-am-widget="list_news" class="am-list-news am-list-news-default">
+                        <div class="am-list-news-hd am-cf">
+                            <a class="">
+                                <h2>最新评论</h2>
+                            </a>
+                        </div>
+                        <div class="am-list-news-bd">
+                            <ul class="am-list">
+                                <li class="am-g am-list-item-dated" style="height: 62px">
+
+                                </li>
+                                <li class="am-g am-list-item-dated" style="height: 62px">
+
+                                </li>
+                                <li class="am-g am-list-item-dated" style="height: 62px">
+
+                                </li>
+                                <li class="am-g am-list-item-dated" style="height: 62px">
+
+                                </li>
+                                <li class="am-g am-list-item-dated" style="height: 62px">
+
+                                </li>
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="new-leaveWord am-show-sm-only">
+                    <div data-am-widget="list_news" class="am-list-news am-list-news-default">
+                        <div class="am-list-news-hd am-cf">
+                            <a class="">
+                                <h2>最新留言</h2>
+                            </a>
+                        </div>
+                        <div class="am-list-news-bd">
+                            <ul class="am-list">
+                                <li class="am-g am-list-item-dated" style="height: 62px">
+
+                                </li>
+                                <li class="am-g am-list-item-dated" style="height: 62px">
+
+                                </li>
+                                <li class="am-g am-list-item-dated" style="height: 62px">
+
+                                </li>
+                                <li class="am-g am-list-item-dated" style="height: 62px">
+
+                                </li>
+                                <li class="am-g am-list-item-dated" style="height: 62px">
+
+                                </li>
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="site-info am-show-sm-only">
+                    <h5 class="site-title">
+                        <i class="am-icon-info site-icon"></i>
+                        <strong style="margin-left: 15px">网站信息</strong>
+                    </h5>
+                    <ul class="site-default" style="height: 200px">
+
+                    </ul>
+                </div>
+            </div>
+            <div class="am-u-sm-12 am-u-lg-3">
+                <div id="right">
+
+                    <h3 class="widget-title">公告</h3>
+                    <div class="widget">
+                        <div class="bg-danger">
+                            <div class="zhy-info">
+                                <i class="am-icon-quote-left" style="float: left"></i><br>
+                                <div class="zhy-info-day">
+                                    <p>一个人最美的时候，</p>
+                                    <p>是自由自在的时候。</p>
+                                    <p>多少人在浮华中丢掉了自己。</p>
+                                    <p>终有一天，你会知道，那些你所挥霍的岁月是最值得怀念的岁月。</p>
+                                    <p>所以我向往自由职业与被动收入，我会用我的青春为之努力！</p>
+                                    <p style="text-align: right;padding-top: 10px">--- IT枫斗者</p>
+                                </div>
+                                <i class="am-icon-quote-right" style="float: right"></i>
+                                <div class="zhy-info-opinion">
+                                    <p><strong>你愿意了解我吗？</strong></p>
+                                    <li onclick="javascript:document.getElementById('06').click();"><a id="06" href="https://mp.weixin.qq.com/s/RsdN8Bf0MXEGl9Jctq__Vw">转行、跳槽、加薪、找工作、财富自由！</a></li>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="myStory">
+                        <div class="bg-myStory">
+                            <div><a class="bg-myStory-a" href="https://mp.weixin.qq.com/s?__biz=Mzg3NjA3ODgxNQ==&mid=2247484189&idx=1&sn=e672e2217a39022534e06da4b0aafa07&chksm=cf36f0adf84179bb3b14667d87764a761e95ff1e1c467f18fdc8d1e39f03b63195ffedebb1e1&token=237019637&lang=zh_CN#rd">铁粉福利，点这里！</a></div>
+                        </div>
+                        <div class="myStory-words">一杯茶，一包烟，一行代码写一天！</div>
+                    </div>
+                    <div class="myStory">
+                        <div class="bg-myGirl">
+                            <div><a class="bg-myGirl-a" href="https://www.javatiaozao.com/" target="_blank">Java跳蚤网课堂</a></div>
+                        </div>
+                        <div class="myStory-words">全套课程|私教带徒|面试辅导|大厂专攻</div>
+                    </div>
+                    <div class="myStory">
+                        <div class="bg-myHeart">
+                            <div><a class="bg-myGirl-a" href="/myheart" target="_blank">程序员吐槽与表白墙</a></div>
+                        </div>
+                        <div class="myStory-words">在这里你可以说出你的真心话！</div>
+                    </div>
+                    <!--<div class="myStory" >-->
+                    <!--<div class="bg-myStory" style="background: url(img/index/ali.jpg) repeat">-->
+                    <!--<div style="font-size: 26px;text-align: center"><a href="/ali" style="text-decoration: none">999封情书</a></div>-->
+                    <!--</div>-->
+                    <!--<div class="myStory-ali" style="text-align: center">-->
+                    <!--其实，我一直都在你身后-->
+                    <!--<br>就差你一个回头-->
+                    <!--</div>-->
+                    <!--</div>-->
+                    <div class="tag-cloud">
+                        <h3 class="widget-title">标签云</h3>
+                        <div class="widget-tag-cloud">
+                            <span>暂无标签</span>
+                        </div>
+                    </div>
+
+                    <div class="site-info am-hide-sm-only">
+                        <h5 class="site-title">
+                            <i class="am-icon-info site-icon"></i>
+                            <strong style="margin-left: 15px">网站信息</strong>
+                        </h5>
+                        <ul class="site-default" style="height: 200px">
+
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="clear"></div>
+    </div>
+    <!--引入共有底部-->
+    <div th:replace="footer :: footer"></div>
+    <!--消息盒子+反馈-->
+    <div th:replace="other :: other"></div>
+</div>
+
+<script src="js/index.js"></script>
+<script src="js/all.js"></script>
+<script src="js/plugs_paging.js"></script>
+</body>
+</html>

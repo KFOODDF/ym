@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:http="http://www.w3.org/1999/xhtml">
+    <!--所有页面共有底部-->
+    <div th:fragment="footer">
+        <div class="footer">
+            <div class="footer am-u-sm-centered">
+                <div class="am-vertical-align" style="text-align: center">
+                    <hr>
+                    <div class="am-vertical-align-bottom">
+                        <div style="color: #009688;font-size: 15px;">
+                            &copy; 2019-2022 IT枫斗者 - <i class="am-icon-coffee" style="margin: 0 5px"></i>IT枫斗者 版权所有
+                        </div>
+                        <div id="footer" style="color: #009688;font-size: 15px;">
+                            总访问量 <span id="totalVisitors"><strong></strong></span> 次  访客量 <span id="visitorVolume"><strong></strong></span> 人次
+                        </div>
+                        <div class="webLogo" style="font-size: 15px;">
+                            <a href="http://beian.miit.gov.cn" target="_blank">
+                              备案号：ICP-2021008530号
+                            </a>
+                        </div>
+                        <div><img src="/img/yongxinzuo.jpg" alt="我们一直在用心做"></div>
+                        <div align='center'><font color='red'>免责声明：网站所有作品均由会员网上搜集共同更新，仅供读者预览及学习交流使用，下载后请24小时内删除，
+                            如果喜欢请购买正版资源!</font></div>
+                        <div class="footer_right"></div>
+                        <div align='center'><font color='red'>原作者如果认为本站侵犯了您的版权,请QQ告知,我们会立即删除!</font></div>
+                        <div class="footer_right"></div>
+                        </div>
+                        <!--<div class="webLogo" style="font-size: 15px;">-->
+                            <!--<img src="https://zhy-myblog.oss-cn-shenzhen.aliyuncs.com/static/img/webLog.png">-->
+                            <!--<a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=51011402000164" target="_blank">-->
+                                <!--川公网安备 51011402000164号-->
+                            <!--</a>-->
+                        <!--</div>-->
+                    </div>
+                </div>
+            </div>
+            <div id="sidebar_toggle" class="sidebar_toggle" data-am-offcanvas="{target: '#offCanvas'}">
+                <div class="sidebar_toggle_line_wrap">
+                    <span class="sidebar-toggle-line sidebar-toggle-line-first" style="width: 100%; top: 0; transform: rotateZ(0deg); opacity: 1; left:0"></span>
+                    <span class="sidebar-toggle-line sidebar-toggle-line-middle" style="width: 100%; opacity: 1; left: 0; top: 0; transform: rotateZ(0deg);"></span>
+                    <span class="sidebar-toggle-line sidebar-toggle-line-last" style="width: 100%; top: 0; transform: rotateZ(0deg); opacity: 1; left: 0;"></span>
+                </div>
+            </div>
+            <div id="offCanvas" class="am-offcanvas">
+                <div class="am-offcanvas-bar am-offcanvas-bar-flip">
+                    <div class="am-offcanvas-content">
+                        <div class="sidebar-inner">
+                            <div class="site-overview">
+                                <div class="img-author" style="text-align: center">
+                                    <p style="font-size: large;font-family: 仿宋">微信公众号</p>
+                                    <div id="weixin">
+                                        <img class="weixinPublic" src="">
+                                    </div>
+                                    <div class="author-name">
+                                        IT枫斗者
+                                    </div>
+                                    <div class="author-words">
+                                        <p>关注求职、跳槽领域，专注java技术分享，java面试经验</p>
+                                        <p>java面试总结及面试资料，零基础培训，一对一培训。</p>
+                                    </div>
+
+                                </div>
+                                <div class="site-state" style="opacity: 1; display: block; transform: translateX(0px);">
+                                    <div class="site-state-item learn-posts">
+                                        <a href="/archives">
+                                            <span class="archivesNum site-state-item-count">0</span>
+                                            <span class="site-state-item-name">日志</span>
+                                        </a>
+                                    </div>
+                                    <div class="site-state-item learn-categories">
+                                        <a id="site-state-item-a" href="/categories">
+                                            <span class="categoriesNum site-state-item-count">0</span>
+                                            <span class="site-state-item-name">分类</span>
+                                        </a>
+                                    </div>
+                                    <div class="site-state-item learn-tags">
+                                        <a href="/tags">
+                                            <span class="tagsNum site-state-item-count">0</span>
+                                            <span class="site-state-item-name">标签</span>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="contact-way">
+                                    <span><i class="am-icon-qq">&nbsp;&nbsp;158672670</i></span>
+                                    <span><i class="am-icon-wechat">&nbsp;&nbsp;itfdz666</i></span>
+                                </div>
+                                <div class="rss">
+                                    <div class="rss-site">
+                                        <a class="rss-site-a" href="/rss">
+                                            <i class="am-icon-rss"> RSS</i>
+                                        </a>
+                                    </div>
+                                </div>
+                                <!--<div class="author-words">-->
+                                    <!--<p>本人目前本科生在读</p>-->
+                                    <!--<p>由于水平有限，希望大家多多支持</p>-->
+                                    <!--<p>有不足之处也希望各位前辈指出</p>-->
+                                <!--</div>-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div data-am-widget="gotop" class="am-gotop am-gotop-fixed" >
+                <a id="toTop"  href="#top">
+                <span title="到顶部" style="color: white">
+                    <i class="am-icon-arrow-up"></i>
+                </span>
+                </a>
+            </div>
+        </div>
+    </div>
+</html>

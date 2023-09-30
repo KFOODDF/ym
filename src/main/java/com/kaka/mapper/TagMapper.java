@@ -25,4 +25,6 @@ public interface TagMapper {
      */
     boolean findIsExistByTagName(String newArticleTag);
 
+    Integer getTagsSizeByName(String tagName);
+
 }

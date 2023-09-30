@@ -79,4 +79,11 @@ public class UserServiceImpl implements UserService {
         // 调用userMapper中的方法，根据手机号查询用户信息
         return userMapper.findUserByPhone(Phone);
     }
+
+    @Override
+    public DataMap getUserPersonalInfo(String username) {
+      User user =  userMapper.getUserPersonalInfo(username);
+      return  DataMap.success().setData(user);
+
+    }
 }
