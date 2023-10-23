@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- MyBatis 映射文件，定义了与 article 表相关的 SQL 操作 -->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kaka.mapper.RewardInfoMapper">
+
+<select id="getRewardInfo" resultType="com.kaka.model.Reward">
+    select * from reward order by  rewardDate  desc
+
+</select>
+
+    <insert id="saveReward">
+        insert  into  reward (fundRaiser,fundRaisingSources,fundraisingPlace,rewardMoney,remarks,rewardDate,rewardUrl)values
+            (#{fundRaiser},#{fundRaisingSources},#{fundraisingPlace},#{rewardMoney},#{remarks},#{rewardDate},#{rewardUrl})
+    </insert>
+
+    <delete id="deleteReward">
+        delete from  reward where id = #{id}
+    </delete>
+</mapper>

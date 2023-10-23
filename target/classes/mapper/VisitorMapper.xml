@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- MyBatis映射文件，用于定义SQL语句与Java方法之间的映射 -->
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- DOCTYPE声明，指向MyBatis 3的DTD，用于验证映射文件的结构 -->
+
+<mapper namespace="com.kaka.mapper.VisitorMapper">
+    <!-- 定义与Java接口com.kaka.mapper.TagMapper相关联的映射 -->
+    <select id="getTotalVisitor" resultType="java.lang.Long">
+        select visitorNum from  visitor where pageName = 'totalVisitor'
+    </select>
+
+
+    <select id="getVisitorNumByPageName" resultType="com.kaka.model.Visitor">
+        select * from visitor where pageName=#{pageName} LIMIT 1
+    </select>
+
+
+
+    <insert id="insertViistorArticlePage">
+        insert  into visitor(visitorNum,pageName)values (0,#{pageName})
+    </insert>
+
+    <update id="updateVisitorBypageName">
+        update visitor  set visitorNum =#{visitorNum} where pageName=#{pageName}
+    </update>
+</mapper>

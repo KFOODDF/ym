@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- MyBatis 映射文件，定义了与 article 表相关的 SQL 操作 -->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kaka.mapper.ArticleMapper">
+
+    <!-- 插入文章到 article 表 -->
+    <insert id="saveArticle">
+        <!-- 定义插入操作，将文章的各个属性插入到 article 表中 -->
+        INSERT INTO article(
+        ...
+        )
+        VALUES
+        (
+        ...
+        )
+    </insert>
+
+    <!-- 查询所有文章，按照 id 降序排列 -->
+    <select id="getArticleManagement" resultType="com.kaka.model.Article">
+        <!-- 获取 article 表中的所有文章，并按照 id 降序排列 -->
+        select * from article order by  id desc
+    </select>
+
+    <!-- 根据给定的 id 查询特定的文章 -->
+    <select id="getArticleById" resultType="com.kaka.model.Article">
+        <!-- 根据指定的 id 查询 article 表中的文章 -->
+        select * from article where id = #{id}
+    </select>
+
+    <!-- 更新文章的上一篇或下一篇文章的 id -->
+    <update id="updateLastNextId">
+        <!-- 根据给定的 articleId 更新文章的上一篇或下一篇文章的 id -->
+        update  article set ${lastOrNextstr} = #{updateId} where articleId =#{articleId}
+    </update>
+
+    <!-- 根据给定的 articleId 删除文章 -->
+    <delete id="deleteArticle">
+        <!-- 删除指定 articleId 的文章 -->
+        delete from article where articleId = #{articleId}
+    </delete>
+
+    <!-- 根据给定的 id 查询特定的文章 -->
+    <select id="getArticleByIntId" resultType="com.kaka.model.Article">
+        <!-- 根据指定的 id 查询 article 表中的文章 -->
+        select * from article where id = #{id}
+    </select>
+
+    <!-- 根据给定的 id 更新文章信息 -->
+    <update id="updateArticleById">
+        <!-- 根据给定的 articleId 更新文章的上一篇或下一篇文章的 id -->
+        UPDATE article
+        ...
+        where id=#{id}
+    </update>
+
+    <!-- 根据给定的 articleId 查询文章标题 -->
+    <select id="getArticleTitleByArtitleId" resultType="java.lang.String">
+        select  articleTitle  from article where  articleId = #{articleId}
+    </select>
+
+    <!-- 根据给定的 articleId 查询文章作者 -->
+    <select id="getArticleAuthorByArtitleId" resultType="java.lang.String">
+        select  author  from article where  articleId = #{articleId}
+    </select>
+
+    <select id="getArticleByAticleId" resultType="com.kaka.model.Article">
+        select  * from  article where articleId =#{articleId}
+    </select>
+    <select id="countArticleNum" resultType="java.lang.Integer">
+        select count(*)from  article
+    </select>
+    
+    <update id="updateLikeByArticleId">
+        update  article  set likes = likes+1  where  articleId = #{articleId}
+    </update>
+
+    <select id="queryLiksByarticle" resultType="java.lang.Integer">
+        select  IFNULL(max(likes),0) from  article  where  articleId = #{articleId}
+    </select>
+
+    <select id="countArticleNumByCategor" resultType="java.lang.String">
+        select  count(*) from article where  articleCategories = #{categoryName}
+    </select>
+
+
+</mapper>
