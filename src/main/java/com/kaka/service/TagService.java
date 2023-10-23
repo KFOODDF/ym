@@ -17,6 +17,13 @@ public interface TagService {
      */
     void insertTags(String[] newarticleTags, int parseInt);
 
-   Integer getTagsSizeByName(String s);
+    /**
+     * 根据标签名称查询其对应的大小或数量。
+     *
+     * @param s 要查询的标签的名称。
+     * @return 返回与指定标签名称匹配的标签的大小或数量。
+     */
+    Integer getTagsSizeByName(String s);
+
 
 }

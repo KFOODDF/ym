@@ -30,4 +30,12 @@ public interface CategoriesService {
      */
     DataMap findCategoriesNames();
 
+    DataMap getCategoryArticle(String category, int rows, int pageNum);
+
+    DataMap findCategoriesNameAndArticleNum();
+
+    DataMap  getPageLeaveMessage(String pageName, String userName);
+
+    void publishLeaveMessage(String leaveMessageContent, String userName, String pageName);
+
 }

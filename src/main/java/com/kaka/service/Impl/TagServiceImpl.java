@@ -35,9 +35,17 @@ public class TagServiceImpl implements TagService {
         }
     }
 
+    /**
+     * 根据标签名称获取其大小或数量。
+     *
+     * @param tagName 要查询的标签的名称。
+     * @return 返回与指定标签名称匹配的标签的大小或数量。
+     */
     @Override
     public Integer getTagsSizeByName(String tagName) {
-
+        // 调用tagMapper中的getTagsSizeByName方法来从数据库中获取标签的大小或数量。
         return tagMapper.getTagsSizeByName(tagName);
     }
+
+
 }

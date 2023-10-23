@@ -7,9 +7,19 @@ spring:
     password: 353146325
   main:
     allow-circular-references: true
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    password:
+hwyun:
+  appKey: B1JsTl33WFgcQ1wHHFiPgIIxBiaj
+  appSecret: f2IHqTNbd3JrhXP9KFGG6cJIdGcb
+  ak: HOOC5QO4AZTTBQ0L9O5M
+  sk: MWfxFHv6t0yOr5yCjwzuVhorFfWE7T1SrS77kknR
 
 server:
   port: 80
+
 
 
 

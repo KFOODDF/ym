@@ -72,4 +72,12 @@ public interface UserMapper {
 
     User getUserPersonalInfo(String username);
 
+    String findUsernameByid(int id);
+
+    int countUserNum();
+
+    int getUserIdByuserName(String name);
+
+    String findAvatarImgUrlByAnswereId(Integer answererId);
+
 }

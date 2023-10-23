@@ -18,74 +18,70 @@ import javax.servlet.http.HttpServletRequest;
 import java.security.Principal;
 import java.util.Objects;
 
-@Slf4j // 使用Lombok库的@Slf4j注解为类提供一个日志对象
-@RestController // 声明这是一个Spring REST控制器
+// 使用Lombok库的@Slf4j注解为类提供一个日志对象
+@Slf4j
+// 声明这是一个Spring REST控制器
+@RestController
 public class RegisterController {
 
-    @Autowired // 自动装配UserService到这个类中
+    // 自动装配UserService到这个类中
+    @Autowired
     private UserService userService;
 
     // HTTP GET请求的处理方法，用于检查电话号码是否存在
     @GetMapping(value = "/phone")
     public String phoneIsExist(String phone){
-        User user = userService.findUserPhone(phone); // 通过服务层查找用户
-        return user.toString(); // 返回用户对象的字符串表示形式
+        // 通过服务层查找用户
+        User user = userService.findUserPhone(phone);
+        // 返回用户对象的字符串表示形式
+        return user.toString();
     }
 
     // HTTP POST请求的处理方法，用于注册新用户
     @PostMapping(value = "/register")
     public String register(User user, HttpServletRequest request) {
         try {
-            // 处理控制层数据
             // 检查用户名是否已注册
             if (userService.userNameIsExist(user.getUsername())){
-                return JsonResult.fail(CodeType.USERNAME_EXIST).toJSON(); // 如果用户名已存在，则返回失败响应
+                // 如果用户名已存在，则返回失败响应
+                return JsonResult.fail(CodeType.USERNAME_EXIST).toJSON();
             }
-            // 对密码进行加密
+            // 使用MD5工具类对用户密码进行加密
             MD5Util md5Util = new MD5Util();
-            user.setPassword(md5Util.encode(user.getPassword())); // 使用MD5工具类对用户密码进行加密
+            user.setPassword(md5Util.encode(user.getPassword()));
 
-            // 注册新用户
-            DataMap data = userService.insertUser(user); // 调用服务层的插入用户方法
-            return JsonResult.build(data).toJSON(); // 返回成功的JSON响应
+            // 调用服务层的插入用户方法
+            DataMap data = userService.insertUser(user);
+            // 返回成功的JSON响应
+            return JsonResult.build(data).toJSON();
 
         } catch (Exception e){
-            // 如果捕获到异常，则记录异常（当前是注释掉的）
-             log.error("RegisterController register Exception", user, e);
+            // 如果捕获到异常，则记录异常
+            log.error("RegisterController register Exception", user, e);
         }
         // 如果出现任何错误，返回服务器异常响应
         return JsonResult.fail(CodeType.SERVER_EXCEPTION).toJSON();
     }
 
-
-
-
-
-
     @PostMapping(value = "/getUserPersonalInfo")
     public String getUserPersonalInfo(@AuthenticationPrincipal Principal principal, HttpServletRequest request) {
         try {
-           // String username = principal.getName();//当前遇到的问题，principal为null
+            // 获取当前登录用户的用户名
             Principal userPrincipal = request.getUserPrincipal();
+            //String name = principal.getName();
             if (!Objects.isNull(userPrincipal)){
                 String username = userPrincipal.getName();
-              DataMap dataMap =  userService.getUserPersonalInfo(username);
+                // 调用服务层方法获取用户个人信息
+                DataMap dataMap =  userService.getUserPersonalInfo(username);
+
+                // 返回成功的JSON响应
                 return JsonResult.build(dataMap).toJSON();
-
             }
-
-
-
-
         } catch (Exception e){
-            // 如果捕获到异常，则记录异常（当前是注释掉的）
+            // 如果捕获到异常，则记录异常
             log.error("RegisterController getUserPersonalInfo Exception",  e);
         }
         // 如果出现任何错误，返回服务器异常响应
         return JsonResult.fail(CodeType.SERVER_EXCEPTION).toJSON();
     }
-
-
-
-
 }

@@ -86,4 +86,22 @@ public class UserServiceImpl implements UserService {
       return  DataMap.success().setData(user);
 
     }
+
+    @Override
+    public String findUsernameByid(int id) {
+
+        return  userMapper.findUsernameByid(id);
+    }
+
+    @Override
+    public int getUserIdByuserName(String name) {
+       int userId = userMapper.getUserIdByuserName(name);
+        return  userId;
+    }
+
+    @Override
+    public String findAvatarImgUrlByAnswereId(Integer answererId) {
+        return   userMapper.findAvatarImgUrlByAnswereId(answererId);
+
+    }
 }

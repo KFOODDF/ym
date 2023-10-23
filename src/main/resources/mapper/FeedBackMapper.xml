@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 声明XML的版本和编码格式 -->
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 定义XML文档类型（DOCTYPE）为MyBatis 3.0的映射器，同时指定了对应的DTD（文档类型定义）URL。这有助于验证映射文件的结构是否正确。 -->
+
+<!-- 开始映射器定义 -->
+<mapper namespace="com.kaka.mapper.FeedBackMapper">
+    <!-- namespace属性指定了这个映射文件对应的Java接口的完整名称。当你在Java代码中调用这个映射文件中的SQL语句时，这个命名空间将被用作引用。 -->
+
+    <!-- 定义一个查询，用于获取所有的反馈信息 -->
+    <select id="getAllFeedback" resultType="com.kaka.model.Feedback">
+        <!-- id属性是这个查询的唯一标识，你会在Java代码中使用这个id来调用这个查询。 -->
+        <!-- resultType属性指定了查询结果应该被映射到哪个Java类。在这里，每行查询结果都将被映射到com.kaka.model.Feedback类的一个实例。 -->
+        select * from  feedback  order by id desc
+        <!-- 这是SQL查询本身，它从feedback表中选择所有记录，并按id降序排列。 -->
+    </select>
+
+    <!-- 定义一个查询，用于获取所有的私人消息 -->
+    <select id="getAllPrivateWord" resultType="com.kaka.model.Privateword">
+        <!-- 同上，id属性是这个查询的唯一标识，resultType属性指定了查询结果应该被映射的Java类。 -->
+        select  *  from  privateword  order by publisherDate desc
+        <!-- 这是SQL查询本身，它从privateword表中选择所有记录，并按publisherDate降序排列。 -->
+    </select>
+
+</mapper>
+        <!-- 结束映射器定义 -->

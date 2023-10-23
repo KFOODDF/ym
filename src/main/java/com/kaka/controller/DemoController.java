@@ -19,7 +19,7 @@ public class DemoController {
     @Autowired
     private DemoService demoService;
 
-    @GetMapping("/inde")
+    @GetMapping("/index")
 
     public String findAll() {
         List<demo> demoList = demoService.findAll();

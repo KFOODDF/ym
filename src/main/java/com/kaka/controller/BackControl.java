@@ -1,15 +1,23 @@
 package com.kaka.controller;
 
 
+
+
+import com.kaka.service.ArticleService;
 import com.kaka.utils.StringUtil;
+import com.kaka.utils.TransCodingUtil;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Map;
 
 /**
  * @author: IT枫斗者
@@ -21,8 +29,8 @@ public class BackControl {
 
     private static final String SLASH_SYMBOL = "/";
 
-    //@Autowired
-    //ArticleService articleService;
+    @Autowired
+    ArticleService articleService;
 
     /**
      * 跳转首页
@@ -123,29 +131,29 @@ public class BackControl {
     /**
      * 跳转到文章显示页
      */
-//    @GetMapping("/article/{articleId}")
-//    public String show(@PathVariable("articleId") long articleId,
-//                       HttpServletResponse response,
-//                       Model model,
-//                       HttpServletRequest request){
-//        response.setCharacterEncoding("utf-8");
-//        response.setContentType("text/html;charset=utf-8");
-//        request.getSession().removeAttribute("lastUrl");
-//
-//        Map<String, String> articleMap = articleService.findArticleTitleByArticleId(articleId);
-//        if(articleMap.get("articleTitle") != null){
-//            model.addAttribute("articleTitle",articleMap.get("articleTitle"));
-//            String articleTabloid = articleMap.get("articleTabloid");
-//            if(articleTabloid.length() <= 110){
-//                model.addAttribute("articleTabloid",articleTabloid);
-//            } else {
-//                model.addAttribute("articleTabloid",articleTabloid.substring(0,110));
-//            }
-//        }
+    @GetMapping("/article/{articleId}")
+    public String show(@PathVariable("articleId") long articleId,
+                       HttpServletResponse response,
+                       Model model,
+                       HttpServletRequest request){
+        response.setCharacterEncoding("utf-8");
+        response.setContentType("text/html;charset=utf-8");
+        request.getSession().removeAttribute("lastUrl");
+
+        Map<String, String> articleMap = articleService.findArticleTitleByArticleId(articleId);
+        if(articleMap.get("articleTitle") != null){
+            model.addAttribute("articleTitle",articleMap.get("articleTitle"));
+            String articleTabloid = articleMap.get("articleTabloid");
+            if(articleTabloid.length() <= 110){
+                model.addAttribute("articleTabloid",articleTabloid);
+            } else {
+                model.addAttribute("articleTabloid",articleTabloid.substring(0,110));
+            }
+        }
         //将文章id存入响应头
-//        response.setHeader("articleId",String.valueOf(articleId));
-//        return "show";
-//    }
+        response.setHeader("articleId",String.valueOf(articleId));
+        return "show";
+    }
 
     /**
      * 跳转到归档页
@@ -168,20 +176,20 @@ public class BackControl {
     /**
      * 跳转到分类页
      */
-//    @GetMapping("/categories")
-//    public String categories(HttpServletResponse response,
-//                             HttpServletRequest request){
-//        response.setCharacterEncoding("utf-8");
-//        response.setContentType("text/html;charset=utf-8");
-//        request.getSession().removeAttribute("lastUrl");
-//        String category = request.getParameter("category");
-//
-//        if(category != null && !category.equals(StringUtil.BLANK)){
-//            response.setHeader("category", TransCodingUtil.stringToUnicode(category));
-//        }
-//
-//        return "categories";
-//    }
+    @GetMapping("/categories")
+    public String categories(HttpServletResponse response,
+                             HttpServletRequest request){
+        response.setCharacterEncoding("utf-8");
+        response.setContentType("text/html;charset=utf-8");
+        request.getSession().removeAttribute("lastUrl");
+        String category = request.getParameter("category");
+
+        if(category != null && !category.equals(StringUtil.BLANK)){
+            response.setHeader("category", TransCodingUtil.stringToUnicode(category));
+        }
+
+        return "categories";
+    }
 
     /**
      * 跳转到标签页

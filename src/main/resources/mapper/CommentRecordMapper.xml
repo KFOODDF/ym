@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- MyBatis 映射文件，定义了与 article 表相关的 SQL 操作 -->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kaka.mapper.CommentRecordMapper">
+<select id="queryComment" resultType="com.kaka.model.CommentRecord">
+    select * from comment_record order by id
+</select>
+
+
+
+<select id="countCommentMapper" resultType="java.lang.Integer">
+    select  count(*) from comment_record
+</select>
+
+</mapper>

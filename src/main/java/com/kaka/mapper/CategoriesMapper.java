@@ -1,7 +1,11 @@
 package com.kaka.mapper;
 
+import com.kaka.model.Article;
 import com.kaka.model.Categories;
+import com.kaka.model.LeaveMessageRecord;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+
 import java.util.List;
 
 // 使用@Mapper注解，标记这是一个MyBatis的Mapper接口
@@ -24,4 +28,18 @@ public interface CategoriesMapper {
 
     // 定义一个方法，用于从数据库中获取所有文章分类的名称
     List<String> findCategoriesNames();
+
+    List<Article> getCategoryArticle(String category);
+
+    List<Article> getCategoryArticles();
+
+    List<String> findCategoriesNameAndArticleNum();
+
+    List<LeaveMessageRecord> getPageLeaveMessage(@Param("pageName") String pageName, @Param("pId") int i);
+
+
+    List<LeaveMessageRecord> findLeaveMessageReplyByPageNameAndPid(@Param("pageName")String pageName,  @Param("id")Integer id);
+
+    void publishLeaveMessage(LeaveMessageRecord leaveMessage);
+
 }

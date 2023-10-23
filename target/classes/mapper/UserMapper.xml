@@ -73,5 +73,18 @@
 
         SELECT  * FROM  USER WHERE  username =#{username}
     </select>
+    <select id="findUsernameByid"   resultType="java.lang.String">
+        select  username from user  where  id =#{id}
+    </select>
+    <select id="countUserNum" resultType="java.lang.Integer">
+        select  count(*) from  user
+    </select>
+    
+<select id="getUserIdByuserName" resultType="java.lang.Integer">
+    select  id from user where username = #{username}
+</select>
 
+    <select id="findAvatarImgUrlByAnswereId" resultType="java.lang.String">
+        select  avatarImgUrl  from  user where  id  = #{answererId}
+    </select>
 </mapper>

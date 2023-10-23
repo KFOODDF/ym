@@ -16,4 +16,14 @@ public interface UserService  {
     User findUserPhone(String Phone);
 
     DataMap getUserPersonalInfo(String username);
+
+    String findUsernameByid(int id);
+
+
+
+
+
+    int getUserIdByuserName(String name);
+
+    String findAvatarImgUrlByAnswereId(Integer answererId);
 }

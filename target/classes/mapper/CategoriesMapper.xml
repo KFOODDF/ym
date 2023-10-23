@@ -30,4 +30,32 @@
         select categoryName from categories
     </select>
 
+    <select id="getCategoryArticle" resultType="com.kaka.model.Article">
+        select  * from  article  where   articleCategories = #{category} order by  id desc
+    </select>
+
+
+    <select id="getCategoryArticles" resultType="com.kaka.model.Article">
+        select  * from  article  order by  id desc
+    </select>
+
+<select id="findCategoriesNameAndArticleNum" resultType="java.lang.String">
+    select  categoryName  from  categories
+</select>
+
+
+    <select id="getPageLeaveMessage" resultType="com.kaka.model.LeaveMessageRecord">
+        select * from leave_message_record where pageName = #{pageName} and pId= ${pId} order by id desc
+    </select>
+
+    <select id="findLeaveMessageReplyByPageNameAndPid" resultType="com.kaka.model.LeaveMessageRecord">
+        select * from leave_message_likes_record where pageName =#{pageName} and pId =#{id}
+    </select>
+
+    <insert id="publishLeaveMessage">
+        insert  into leave_message_record (pageName,answererId,pId,respondentId,leaveMessageContent,likes,leaveMessageDate,isRead)
+    values (#{pageName},#{answererId},#{pId},#{respondentId},#{leaveMessageContent},#{likes},#{leaveMessageDate},#{isRead})
+    </insert>
+
+
 </mapper>

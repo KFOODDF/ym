@@ -24,5 +24,14 @@
         select tagSize from tags where tagName = #{tagName} LIMIT 1
     </select>
 
+    <select id="countTagsNum" resultType="java.lang.Integer">
+        select count(*) from  tags
+
+    </select>
+
+<select id="findTagsCloud" resultType="com.kaka.model.Tags">
+    select *  from  tags order by id desc
+</select>
+
 
 </mapper>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 定义命名空间，用于指定对应的 Mapper 接口 -->
+<mapper namespace="com.kaka.mapper.LeaveMessageRecordMapper">
+
+   <select id="queryLeaveMessage" resultType="com.kaka.model.LeaveMessageRecord">
+       select * from  leave_message_record order by id desc
+   </select>
+
+    <select id="countLeaveMessageMapper" resultType="java.lang.Integer">
+        select count(*) from leave_message_record
+    </select>
+
+</mapper>

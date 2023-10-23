@@ -1,16 +1,54 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- MyBatis的映射文件，定义了如何将SQL语句与Java对象进行映射 -->
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <!-- 定义命名空间，用于指定对应的 Mapper 接口 -->
 <mapper namespace="com.kaka.mapper.LikesMapper">
 
-<select id="getArticleThumbsUp" resultType="com.kaka.model.ArticleLikesRecord">
-    select * from  article_likes_record order by id desc
-</select>
+    <!-- 定义一个查询操作，用于查询所有的文章点赞记录，并按照 id 降序排列 -->
+    <select id="getArticleThumbsUp" resultType="com.kaka.model.ArticleLikesRecord">
+        select * from  article_likes_record order by id desc
+    </select>
 
+    <!-- 定义一个查询操作，用于查询未读的文章点赞数量 -->
     <select id="getMagIsNotReadNum" resultType="java.lang.Integer">
         select count(*) from  article_likes_record where isRead = 1
     </select>
+
+    <!-- 定义一个更新操作，用于将所有的文章点赞消息标记为已读 -->
+    <update id="readAllThumbsUp">
+        update  article_likes_record set isRead =  0
+    </update>
+
+    <!-- 定义一个查询操作，用于查询所有的友情链接 -->
+    <select id="getFriendLink" resultType="com.kaka.model.Friendlink">
+        select  *  from  friendlink
+    </select>
+
+    <!-- 定义一个插入操作，用于添加一个新的友情链接到数据库 -->
+    <insert id="addFriendlink">
+        insert  into  friendlink(blogger,url)values (#{blogger},#{url})
+    </insert>
+
+    <!-- 定义一个更新操作，用于更新数据库中的一个已存在的友情链接 -->
+    <update id="updateFriendLink">
+        update  friendlink  set   blogger=#{blogger},url=#{url} where  id =#{id}
+    </update>
+
+    <!-- 定义一个删除操作，用于从数据库中删除一个指定ID的友情链接 -->
+    <delete id="deleteFriendLink">
+        delete  from friendlink where  id = #{id}
+    </delete>
+
+   <select id="isLiked" resultType="com.kaka.model.ArticleLikesRecord">
+
+       select likeDate from  article_likes_record  where articleId =#{articleId} and likerId= #{likerId}
+
+   </select>
+
+    <insert id="inertArticleLikesRecord">
+        insert  into  article_likes_record(articleId,likeDate,likerId,isRead) values  (#{articleId},#{likeDate},#{likerId},#{isRead})
+    </insert>
 
 </mapper>
